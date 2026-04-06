@@ -277,3 +277,622 @@ body {
   color: #484f58;
   text-align: right;
 }
+
+/* ══════════════════════════════════════
+   首頁
+══════════════════════════════════════ */
+.home {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #0d1117;
+}
+
+.home-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 40px;
+  padding: 40px 20px;
+  width: 100%;
+  max-width: 480px;
+}
+
+.home-header {
+  text-align: center;
+}
+
+.home-title {
+  font-size: 32px;
+  font-weight: 700;
+  color: #e0e0e0;
+  margin-bottom: 8px;
+  letter-spacing: -0.5px;
+}
+
+.home-subtitle {
+  font-size: 14px;
+  color: #484f58;
+}
+
+/* 選單卡片 */
+.home-menu {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  width: 100%;
+}
+
+.menu-card {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  width: 100%;
+  padding: 18px 20px;
+  border: 1px solid #30363d;
+  border-radius: 12px;
+  background: #161b22;
+  cursor: pointer;
+  text-align: left;
+  transition: border-color 0.15s, background 0.15s, transform 0.1s;
+  position: relative;
+}
+
+.menu-card:hover:not(:disabled) {
+  border-color: #58a6ff;
+  background: #1c2333;
+  transform: translateY(-1px);
+}
+
+.menu-card:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+.menu-card--soon {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.menu-icon {
+  font-size: 28px;
+  flex-shrink: 0;
+  width: 40px;
+  text-align: center;
+}
+
+.menu-text {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  flex: 1;
+}
+
+.menu-label {
+  font-size: 15px;
+  font-weight: 600;
+  color: #e0e0e0;
+}
+
+.menu-desc {
+  font-size: 12px;
+  color: #8b949e;
+}
+
+.menu-badge {
+  font-size: 11px;
+  padding: 2px 8px;
+  border-radius: 20px;
+  background: #21262d;
+  color: #484f58;
+  border: 1px solid #30363d;
+  flex-shrink: 0;
+}
+
+.menu-arrow {
+  font-size: 18px;
+  color: #58a6ff;
+  flex-shrink: 0;
+  opacity: 0;
+  transition: opacity 0.15s;
+}
+
+.menu-card:hover:not(:disabled) .menu-arrow {
+  opacity: 1;
+}
+
+.home-footer {
+  font-size: 11px;
+  color: #30363d;
+}
+
+/* 返回首頁按鈕 */
+.home-btn {
+  color: #8b949e;
+}
+.home-btn:hover {
+  color: #e0e0e0;
+}
+
+
+/* ══════════════════════════════════════
+   圖鑑共用
+══════════════════════════════════════ */
+.pdx-page {
+  height: 100vh;
+  background: #0d1117;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.pdx-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 20px;
+  border-bottom: 1px solid #21262d;
+  background: #161b22;
+  flex-shrink: 0;
+}
+
+.pdx-back {
+  padding: 4px 10px;
+  border: 1px solid #30363d;
+  border-radius: 6px;
+  background: #21262d;
+  cursor: pointer;
+  font-size: 12px;
+  color: #8b949e;
+  transition: color 0.15s;
+  white-space: nowrap;
+}
+.pdx-back:hover { color: #e0e0e0; }
+
+.pdx-title {
+  font-size: 17px;
+  font-weight: 600;
+  color: #e0e0e0;
+  flex: 1;
+}
+
+.pdx-count {
+  font-size: 12px;
+  color: #484f58;
+  white-space: nowrap;
+}
+
+/* ══════════════════════════════════════
+   圖鑑列表
+══════════════════════════════════════ */
+
+/* 篩選面板 */
+.pdx-filter-panel {
+  flex-shrink: 0;
+  border-bottom: 1px solid #21262d;
+  background: #0d1117;
+}
+
+.pdx-filter-section {
+  border-bottom: 1px solid #21262d;
+}
+
+.pdx-filter-section-hd {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 10px 16px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 500;
+  color: #8b949e;
+  text-align: left;
+}
+.pdx-filter-section-hd:hover { color: #e0e0e0; }
+
+.pdx-filter-chevron {
+  font-size: 11px;
+  color: #484f58;
+}
+
+.pdx-tag-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  padding: 4px 16px 12px;
+}
+
+.pdx-filter-tag {
+  padding: 4px 12px;
+  border-radius: 20px;
+  border: 1px solid #30363d;
+  background: #161b22;
+  color: #8b949e;
+  font-size: 12px;
+  cursor: pointer;
+  transition: all 0.12s;
+  white-space: nowrap;
+}
+.pdx-filter-tag:hover { border-color: #58a6ff; color: #e0e0e0; }
+.pdx-filter-tag--on {
+  background: #1f3a5f;
+  border-color: #58a6ff;
+  color: #fff;
+}
+
+/* 區域列 */
+.pdx-zone-row {
+  display: flex;
+  gap: 6px;
+  padding: 10px 16px;
+  overflow-x: auto;
+  border-bottom: 1px solid #21262d;
+}
+.pdx-zone-row::-webkit-scrollbar { display: none; }
+
+.pdx-zone-btn {
+  padding: 5px 14px;
+  border-radius: 20px;
+  border: 1px solid #30363d;
+  background: #161b22;
+  color: #8b949e;
+  font-size: 13px;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all 0.12s;
+}
+.pdx-zone-btn:hover { border-color: #58a6ff; color: #e0e0e0; }
+.pdx-zone-btn--on {
+  background: #1f6feb;
+  border-color: #1f6feb;
+  color: #fff;
+}
+
+/* 搜尋 */
+.pdx-search-wrap {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 16px;
+}
+
+.pdx-search-icon {
+  font-size: 14px;
+  flex-shrink: 0;
+}
+
+.pdx-search-input {
+  flex: 1;
+  padding: 8px 10px;
+  border: none;
+  background: none;
+  color: #e0e0e0;
+  font-size: 14px;
+  outline: none;
+}
+.pdx-search-input::placeholder { color: #484f58; }
+
+.pdx-search-clear {
+  padding: 4px 10px;
+  border: 1px solid #f85149;
+  border-radius: 6px;
+  background: none;
+  color: #f85149;
+  font-size: 12px;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+/* 列表區域（可滾動） */
+.pdx-list-wrap {
+  flex: 1;
+  overflow-y: auto;
+  padding: 16px;
+}
+
+/* 3欄格子 */
+.pdx-grid3 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+}
+
+.pdx-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  padding: 14px 8px;
+  border: 1px solid #21262d;
+  border-radius: 10px;
+  background: #161b22;
+  cursor: pointer;
+  transition: border-color 0.15s, transform 0.1s;
+  text-align: center;
+  width: 100%;
+}
+.pdx-card:hover {
+  border-color: #30363d;
+  transform: translateY(-2px);
+}
+
+.pdx-card-img-wrap {
+  width: 72px;
+  height: 72px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.pdx-card-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.pdx-card-img-placeholder {
+  width: 72px;
+  height: 72px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #21262d;
+  border-radius: 8px;
+  font-size: 22px;
+  color: #484f58;
+}
+.pdx-card-img-placeholder--lg {
+  width: 160px;
+  height: 160px;
+  font-size: 48px;
+}
+
+.pdx-card-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3px;
+  width: 100%;
+}
+
+.pdx-card-num {
+  font-size: 10px;
+  color: #484f58;
+  font-family: monospace;
+}
+
+.pdx-card-name {
+  font-size: 13px;
+  font-weight: 500;
+  color: #e0e0e0;
+}
+
+.pdx-card-types {
+  display: flex;
+  gap: 4px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.pdx-loader {
+  text-align: center;
+  padding: 20px;
+  color: #484f58;
+  font-size: 13px;
+}
+
+.pdx-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  padding: 60px 20px;
+  color: #484f58;
+  font-size: 14px;
+}
+
+/* 屬性 badge */
+.pdx-type {
+  font-size: 10px;
+  padding: 1px 7px;
+  border-radius: 20px;
+  font-weight: 600;
+  color: #fff;
+  background: #484f58;
+}
+.pdx-type--草   { background: #5D8A3C; }
+.pdx-type--火   { background: #c84028; }
+.pdx-type--水   { background: #3B7FC4; }
+.pdx-type--電   { background: #a08800; }
+.pdx-type--冰   { background: #4a90b8; }
+.pdx-type--格鬥 { background: #9a3030; }
+.pdx-type--毒   { background: #7c3f9a; }
+.pdx-type--地面 { background: #927040; }
+.pdx-type--飛行 { background: #5870c8; }
+.pdx-type--超能力{ background: #c83070; }
+.pdx-type--蟲   { background: #6a8a10; }
+.pdx-type--岩石 { background: #8a7040; }
+.pdx-type--幽靈 { background: #4a3070; }
+.pdx-type--龍   { background: #3038b0; }
+.pdx-type--惡   { background: #503828; }
+.pdx-type--鋼   { background: #6870a0; }
+.pdx-type--妖精 { background: #c070a0; }
+.pdx-type--一般 { background: #888; }
+
+/* ══════════════════════════════════════
+   圖鑑詳細頁
+══════════════════════════════════════ */
+.pdx-detail-wrap {
+  flex: 1;
+  overflow-y: auto;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* 上方一列：圖片 + 基本資訊 */
+.pdx-detail-top {
+  display: flex;
+  gap: 24px;
+  align-items: flex-start;
+}
+
+@media (max-width: 600px) {
+  .pdx-detail-top { flex-direction: column; align-items: center; }
+  .pdx-detail-basic { width: 100%; }
+  .pdx-detail-cards { grid-template-columns: 1fr !important; }
+}
+
+.pdx-detail-hero {
+  flex-shrink: 0;
+  width: 180px;
+  height: 180px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #161b22;
+  border: 1px solid #21262d;
+  border-radius: 14px;
+  padding: 16px;
+}
+
+.pdx-detail-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.pdx-detail-basic {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  background: #161b22;
+  border: 1px solid #21262d;
+  border-radius: 14px;
+  overflow: hidden;
+}
+
+.pdx-detail-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 11px 16px;
+  border-bottom: 1px solid #21262d;
+}
+.pdx-detail-row:last-child { border-bottom: none; }
+
+.pdx-detail-label {
+  font-size: 11px;
+  color: #8b949e;
+  width: 66px;
+  flex-shrink: 0;
+}
+
+.pdx-detail-value {
+  font-size: 13px;
+  color: #e0e0e0;
+}
+
+.pdx-event-badge {
+  font-size: 12px;
+  padding: 2px 10px;
+  border-radius: 20px;
+  background: #2d1f05;
+  color: #e3a020;
+  border: 1px solid #5a3e0a;
+}
+
+/* 下方 2 欄卡片 */
+.pdx-detail-cards {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 14px;
+}
+
+.pdx-detail-card {
+  background: #161b22;
+  border: 1px solid #21262d;
+  border-radius: 14px;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.pdx-detail-card-title {
+  font-size: 11px;
+  font-weight: 600;
+  color: #8b949e;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.pdx-detail-card-body {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.pdx-detail-empty {
+  font-size: 13px;
+  color: #484f58;
+}
+
+.pdx-tag-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.pdx-tag {
+  font-size: 12px;
+  padding: 3px 10px;
+  border-radius: 20px;
+  background: #21262d;
+  color: #c9d1d9;
+  border: 1px solid #30363d;
+}
+
+.pdx-tag--green {
+  background: #1a2f1a;
+  color: #7db87d;
+  border-color: #2d4f2d;
+}
+
+.pdx-tag--blue {
+  background: #1a2040;
+  color: #7d9ddb;
+  border-color: #2d3a60;
+}
+
+/* 棲息地 */
+.pdx-habitat-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 100%;
+}
+
+.pdx-habitat-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.pdx-habitat-img {
+  width: 48px;
+  height: 48px;
+  object-fit: cover;
+  border-radius: 8px;
+  border: 1px solid #30363d;
+  flex-shrink: 0;
+}
+
+.pdx-habitat-name {
+  font-size: 13px;
+  color: #e0e0e0;
+}

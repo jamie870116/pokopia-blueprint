@@ -1,8 +1,8 @@
 import React, { useRef } from 'react';
-import useBlueprintStore from '../store/useBlueprintStore';
-import { MATERIALS } from '../constants/materials';
+import useBlueprintStore from '../store/useBlueprintStore.js';
+import { MATERIALS } from '../constants/materials.js';
 
-export default function Topbar() {
+export default function Topbar({ onHome }) {
   const {
     currentMat, eraseMode, currentLayer,
     displayUpToLayer, setDisplayUpToLayer,
@@ -26,8 +26,15 @@ export default function Topbar() {
 
   return (
     <header className="topbar">
-      <span className="topbar-title">Pokopia 藍圖</span>
+      {/* 返回首頁 */}
+      {onHome && (
+        <>
+          <button className="tool-btn home-btn" onClick={onHome}>← 首頁</button>
+          <div className="sep" />
+        </>
+      )}
 
+      <span className="topbar-title">Pokopia 藍圖</span>
       <div className="sep" />
 
       {/* 材質選擇 */}
@@ -46,7 +53,6 @@ export default function Topbar() {
 
       <div className="sep" />
 
-      {/* 工具 */}
       <button className={`tool-btn ${eraseMode ? 'danger' : ''}`} onClick={toggleErase}>
         橡皮擦
       </button>
@@ -54,7 +60,6 @@ export default function Topbar() {
 
       <div className="sep" />
 
-      {/* 匯出入 */}
       <button className="tool-btn" onClick={exportJSON}>匯出 JSON</button>
       <button className="tool-btn" onClick={() => fileRef.current.click()}>匯入 JSON</button>
       <input ref={fileRef} type="file" accept=".json" style={{ display: 'none' }} onChange={handleImport} />
@@ -62,10 +67,8 @@ export default function Topbar() {
       <div className="sep" />
 
       <span className="block-count">方塊：{totalBlocks()}</span>
-
       <div className="sep" />
 
-      {/* 3D 顯示層數 */}
       <div className="layer-ctrl">
         <span className="layer-label">3D 顯示至</span>
         <button className="lbtn" onClick={() => setDisplayUpToLayer(displayUpToLayer - 1)}>−</button>
@@ -75,7 +78,6 @@ export default function Topbar() {
 
       <div className="sep" />
 
-      {/* 編輯層數 */}
       <div className="layer-ctrl">
         <span className="layer-label">編輯層</span>
         <button className="lbtn" onClick={() => changeLayer(-1)}>−</button>

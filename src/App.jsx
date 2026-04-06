@@ -1,17 +1,20 @@
 import React from 'react';
-import Topbar   from './components/Topbar.jsx';
-import Editor2D from './components/Editor2D.jsx';
-import Preview3D from './components/Preview3D.jsx';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import Home            from './pages/Home.jsx';
+import BlueprintEditor from './pages/BlueprintEditor.jsx';
+import PokedexList     from './pages/Pokedex/PokedexList.jsx';
+import PokedexDetail   from './pages/Pokedex/PokedexDetail.jsx';
 import './App.css';
 
 export default function App() {
   return (
-    <div className="app">
-      <Topbar />
-      <div className="split">
-        <Editor2D />
-        <Preview3D />
-      </div>
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/"                element={<Home />} />
+        <Route path="/blueprint"       element={<BlueprintEditor />} />
+        <Route path="/pokedex"         element={<PokedexList />} />
+        <Route path="/pokedex/:slug"   element={<PokedexDetail />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
