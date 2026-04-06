@@ -1,11 +1,14 @@
 # Pokopia Blueprint Editor
 ***🚧 Work in Progress — This project is under active development.***
 
+**[Live Demo](https://pokopia-tools.netlify.app/)**
+
 A web-based grid blueprint tool for planning block-based buildings in Pokopia. Design your structures layer by layer in 2D, and preview them instantly in 3D.
 
 ![Blueprint Editor Screenshot](./src/assets/demo.png)
 
----
+
+
 
 ## Features
 
