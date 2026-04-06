@@ -103,7 +103,7 @@ Click **Import JSON** to reload a previously saved blueprint.
 
 - [ ] Add item list and material colors
 - [ ] Flood fill tool (paint bucket)
-- [ ] Copy / paste floor layers
+- [ ] Copy / paste floor layers (複製當前的到其他層去->柱子牆壁等)
 - [ ] Undo / Redo support
 - [ ] Screenshot export
 - [ ] Mobile touch support
