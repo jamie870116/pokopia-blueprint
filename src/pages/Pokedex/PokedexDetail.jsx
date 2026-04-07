@@ -55,7 +55,7 @@ export default function PokedexDetail() {
           <div className="pdx-detail-hero">
             {pokemon.pokemonImageFile ? (
               <img
-                src={`/src/assets/images/pokemon/${pokemon.pokemonImageFile}`}
+                src={`/images/pokemon/${pokemon.pokemonImageFile}`}
                 alt={pokemon.nameChinese}
                 className="pdx-detail-img"
               />
@@ -126,7 +126,7 @@ export default function PokedexDetail() {
                   <div key={h.slug} className="pdx-habitat-item">
                     {h.imageFile && (
                       <img
-                        src={`/src/assets/images/habitats/${h.imageFile}`}
+                        src={`/images/habitats/${h.imageFile}`}
                         alt={h.name}
                         className="pdx-habitat-img"
                       />

@@ -155,7 +155,7 @@ export default function PokedexList() {
                   <div className="pdx-card-img-wrap">
                     {p.pokemonImageFile ? (
                       <img
-                        src={`/src/assets/images/pokemon/${p.pokemonImageFile}`}
+                        src={`/images/pokemon/${p.pokemonImageFile}`}
                         alt={p.nameChinese}
                         className="pdx-card-img"
                         loading="lazy"
