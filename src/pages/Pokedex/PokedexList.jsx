@@ -17,7 +17,7 @@ const ALL_ENVS    = unique(ALL_POKEMON.map((p) => p.environment));
 const ZONES = ['空空鎮', '乾巴巴荒野', '陰沉沉海濱', '凸隆隆山地', '亮晶晶空島', '未分配'];
 
 // ── Tag 多選列 ──────────────────────────────────
-function TagRow({ label, items, selected, onToggle, defaultOpen = false }) {
+function TagRow({ label, items, selected, onToggle, defaultOpen = false, getItemClass }) {
   const [open, setOpen] = useState(defaultOpen);
   return (
     <div className="pdx-filter-section">
@@ -30,7 +30,7 @@ function TagRow({ label, items, selected, onToggle, defaultOpen = false }) {
           {items.map((item) => (
             <button
               key={item}
-              className={`pdx-filter-tag ${selected.has(item) ? 'pdx-filter-tag--on' : ''}`}
+              className={`pdx-filter-tag ${selected.has(item) ? 'pdx-filter-tag--on' : ''} ${getItemClass ? getItemClass(item) : ''}`}
               onClick={() => onToggle(item)}
             >
               {item}
@@ -108,7 +108,7 @@ export default function PokedexList() {
 
       {/* ── 篩選面板 ── */}
       <div className="pdx-filter-panel">
-        <TagRow label="按類型瀏覽" items={ALL_TYPES} selected={types} onToggle={toggle(setTypes)} defaultOpen />
+        <TagRow label="按類型瀏覽" items={ALL_TYPES} selected={types} onToggle={toggle(setTypes)} defaultOpen getItemClass={(t) => `pdx-type--${t}`} />
         <TagRow label="按特長瀏覽" items={ALL_SPECS}  selected={specs} onToggle={toggle(setSpecs)} />
         <TagRow label="按喜好瀏覽" items={ALL_FAVS}   selected={favs}  onToggle={toggle(setFavs)} />
         <TagRow label="按喜歡的環境瀏覽" items={ALL_ENVS} selected={envs} onToggle={toggle(setEnvs)} />
