@@ -230,6 +230,116 @@ body {
   white-space: nowrap;
 }
 
+.mat-tabs {
+  display: flex;
+  gap: 4px;
+  margin-bottom: 8px;
+}
+
+.mat-tab {
+  flex: 1;
+  padding: 5px 4px;
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius-sm);
+  background: var(--panel-soft);
+  cursor: pointer;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-dim);
+  transition: border-color 0.15s, background 0.15s, color 0.15s;
+}
+.mat-tab:hover { border-color: var(--accent); }
+.mat-tab.active {
+  border-color: var(--accent);
+  background: var(--accent-soft);
+  color: var(--accent-dark);
+}
+
+.mat-search {
+  width: 100%;
+  padding: 6px 10px;
+  margin-bottom: 8px;
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius-sm);
+  background: var(--panel-soft);
+  color: var(--text);
+  font-size: 12px;
+  outline: none;
+  transition: border-color 0.15s;
+}
+.mat-search:focus { border-color: var(--accent); }
+.mat-search::placeholder { color: var(--text-faint); }
+
+.mat-tile-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 4px;
+  max-height: 220px;
+  overflow-y: auto;
+}
+
+.mat-tile {
+  aspect-ratio: 1;
+  padding: 2px;
+  border: 1.5px solid var(--border);
+  border-radius: 7px;
+  background: var(--panel-soft);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  transition: border-color 0.15s, transform 0.1s;
+}
+.mat-tile:hover {
+  border-color: var(--accent);
+  transform: scale(1.08);
+}
+.mat-tile.active {
+  border-color: var(--accent);
+  background: var(--accent-soft);
+  box-shadow: inset 0 0 0 1.5px var(--accent);
+}
+
+.mat-tile img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.mat-tile-color {
+  width: 100%;
+  height: 100%;
+  border-radius: 4px;
+}
+
+.mat-empty {
+  grid-column: 1 / -1;
+  font-size: 12px;
+  color: var(--text-faint);
+  text-align: center;
+  padding: 12px 0;
+}
+
+.mat-current {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  margin-top: 8px;
+  padding: 6px 8px;
+  border-radius: var(--radius-sm);
+  background: var(--accent-soft);
+}
+
+.mat-current-name {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--accent-dark);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
 /* Layers */
 .layer-row {
   display: flex;
@@ -315,8 +425,11 @@ body {
 .stats-name {
   font-size: 12px;
   color: var(--text);
-  width: 48px;
+  width: 64px;
   flex-shrink: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .stats-bar-wrap {

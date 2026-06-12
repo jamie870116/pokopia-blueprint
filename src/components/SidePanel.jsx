@@ -1,6 +1,11 @@
-import React, { useMemo } from 'react';
+import React, { useMemo, useState } from 'react';
 import useBlueprintStore from '../store/useBlueprintStore';
-import { MATERIALS, MAX_LAYERS } from '../constants/materials';
+import {
+  MATERIALS,
+  MATERIAL_MAP,
+  MATERIAL_CATEGORIES,
+  MAX_LAYERS,
+} from '../constants/materials';
 
 const TOOLS = [
   { id: 'paint', icon: '✏️', label: '畫筆', shortcut: 'B' },
@@ -48,23 +53,69 @@ function MaterialSection() {
   const currentMat = useBlueprintStore((s) => s.currentMat);
   const tool = useBlueprintStore((s) => s.tool);
   const selectMat = useBlueprintStore((s) => s.selectMat);
+  const [category, setCategory] = useState('基本');
+  const [query, setQuery] = useState('');
+
+  const shown = useMemo(() => {
+    const q = query.trim().toLowerCase();
+    if (q) {
+      // Search across every category, by Chinese or English name
+      return MATERIALS.filter(
+        (m) => m.name.toLowerCase().includes(q) || m.nameEnglish.toLowerCase().includes(q)
+      );
+    }
+    return MATERIALS.filter((m) => m.category === category);
+  }, [category, query]);
+
+  const current = MATERIAL_MAP.get(currentMat);
 
   return (
     <section className="side-section">
       <h3 className="side-title">材質</h3>
-      <div className="mat-grid">
-        {MATERIALS.map((m) => (
+
+      <div className="mat-tabs">
+        {MATERIAL_CATEGORIES.map((c) => (
           <button
-            key={m.id}
-            className={`mat-swatch ${currentMat === m.id && tool !== 'erase' ? 'active' : ''}`}
-            onClick={() => selectMat(m.id)}
-            title={m.name}
+            key={c}
+            className={`mat-tab ${category === c && !query ? 'active' : ''}`}
+            onClick={() => { setCategory(c); setQuery(''); }}
           >
-            <span className="mat-color" style={{ background: m.color }} />
-            <span className="mat-name">{m.name}</span>
+            {c}
           </button>
         ))}
       </div>
+
+      <input
+        className="mat-search"
+        placeholder="搜尋材質..."
+        value={query}
+        onChange={(e) => setQuery(e.target.value)}
+      />
+
+      <div className="mat-tile-grid">
+        {shown.map((m) => (
+          <button
+            key={m.id}
+            className={`mat-tile ${currentMat === m.id && tool !== 'erase' ? 'active' : ''}`}
+            onClick={() => selectMat(m.id)}
+            title={m.nameEnglish ? `${m.name}（${m.nameEnglish}）` : m.name}
+          >
+            {m.image ? (
+              <img src={m.image} alt={m.name} loading="lazy" />
+            ) : (
+              <span className="mat-tile-color" style={{ background: m.color }} />
+            )}
+          </button>
+        ))}
+        {shown.length === 0 && <div className="mat-empty">找不到材質</div>}
+      </div>
+
+      {current && (
+        <div className="mat-current">
+          <span className="mat-color" style={{ background: current.color }} />
+          <span className="mat-current-name">{current.name}</span>
+        </div>
+      )}
     </section>
   );
 }

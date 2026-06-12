@@ -16,6 +16,7 @@ A web-based grid blueprint tool for planning block-based buildings in Pokopia. D
 - **3D Live Preview** — Real-time 3D view that syncs with every edit (single instanced mesh, no lag while painting)
 - **Multi-layer Support** — Edit up to 20 floors (Y-axis) independently
 - **Layer-by-layer 3D Display** — Control how many floors are visible in the 3D preview to inspect each level
+- **Real Game Blocks** — 194 block materials scraped from the game (Chinese + English names, thumbnails); cells render the block thumbnail when zoomed in
 - **Paint Bucket** — Flood-fill enclosed regions in one click
 - **Copy / Paste Floors** — Duplicate a whole floor onto another one
 - **Undo / Redo** — One drag stroke = one undo step (`Ctrl+Z` / `Ctrl+Shift+Z`)
@@ -108,7 +109,7 @@ Click **Import JSON** to reload a previously saved blueprint.
 
 ## Roadmap
 
-- [ ] Add item list and material colors
+- [x] Add item list and material colors (194 in-game blocks via `npm run scrape:blocks`)
 - [x] Flood fill tool (paint bucket)
 - [x] Copy / paste floor layers
 - [x] Undo / Redo support

@@ -1,0 +1,1947 @@
+{
+  "scraped_at": "2026-06-12T19:03:33.410Z",
+  "source": "https://pokopiaguide.com/zh/items（方塊分類）",
+  "total": 194,
+  "blocks": [
+    {
+      "id": "blk-2",
+      "itemId": 2,
+      "name": "Wood Flooring",
+      "nameChinese": "木地板",
+      "colorable": false,
+      "image": "item-2.png",
+      "color": "#e4a875",
+      "hex": 14985333
+    },
+    {
+      "id": "blk-3",
+      "itemId": 3,
+      "name": "Hay Pile",
+      "nameChinese": "乾草堆",
+      "colorable": false,
+      "image": "item-3.png",
+      "color": "#97ea64",
+      "hex": 9955940
+    },
+    {
+      "id": "blk-5",
+      "itemId": 5,
+      "name": "Cracked sandstone",
+      "nameChinese": "龜裂砂岩",
+      "colorable": false,
+      "image": "item-5.png",
+      "color": "#b4aca7",
+      "hex": 11840679
+    },
+    {
+      "id": "blk-35",
+      "itemId": 35,
+      "name": "Scrap Cube",
+      "nameChinese": "廢鐵方塊",
+      "colorable": false,
+      "image": "item-35.png",
+      "color": "#908d8d",
+      "hex": 9473421
+    },
+    {
+      "id": "blk-52",
+      "itemId": 52,
+      "name": "Ditto Pattern",
+      "nameChinese": "百變怪滿滿花紋",
+      "colorable": false,
+      "image": "item-52.png",
+      "color": "#94908c",
+      "hex": 9736332
+    },
+    {
+      "id": "blk-75",
+      "itemId": 75,
+      "name": "Scrap Cube",
+      "nameChinese": "廢鐵方塊",
+      "colorable": false,
+      "image": "item-75.png",
+      "color": "#f9ee71",
+      "hex": 16379505
+    },
+    {
+      "id": "blk-78",
+      "itemId": 78,
+      "name": "Neon Flooring",
+      "nameChinese": "霓虹地板",
+      "colorable": true,
+      "image": "item-78.png",
+      "color": "#d3d272",
+      "hex": 13881970
+    },
+    {
+      "id": "blk-93",
+      "itemId": 93,
+      "name": "Stylish Bronze Wall",
+      "nameChinese": "時尚青銅牆",
+      "colorable": false,
+      "image": "item-93.png",
+      "color": "#cc7149",
+      "hex": 13398345
+    },
+    {
+      "id": "blk-94",
+      "itemId": 94,
+      "name": "Iron Tiling",
+      "nameChinese": "鐵磚",
+      "colorable": true,
+      "image": "item-94.png",
+      "color": "#756f6d",
+      "hex": 7696237
+    },
+    {
+      "id": "blk-170",
+      "itemId": 170,
+      "name": "Crystal Wall",
+      "nameChinese": "水晶牆",
+      "colorable": false,
+      "image": "item-170.png",
+      "color": "#75ebfe",
+      "hex": 7728126
+    },
+    {
+      "id": "blk-172",
+      "itemId": 172,
+      "name": "Ice",
+      "nameChinese": "冰塊",
+      "colorable": false,
+      "image": "item-172.png",
+      "color": "#8de7fb",
+      "hex": 9299963
+    },
+    {
+      "id": "blk-197",
+      "itemId": 197,
+      "name": "Luxurious Carpet",
+      "nameChinese": "豪華地毯",
+      "colorable": true,
+      "image": "item-197.png",
+      "color": "#c69945",
+      "hex": 13015365
+    },
+    {
+      "id": "blk-198",
+      "itemId": 198,
+      "name": "Lava Rock",
+      "nameChinese": "岩漿岩石",
+      "colorable": false,
+      "image": "item-198.png",
+      "color": "#15100f",
+      "hex": 1380367
+    },
+    {
+      "id": "blk-200",
+      "itemId": 200,
+      "name": "Neon Floor",
+      "nameChinese": "霓虹地板",
+      "colorable": false,
+      "image": "item-200.png",
+      "color": "#b1f8ff",
+      "hex": 11663615
+    },
+    {
+      "id": "blk-201",
+      "itemId": 201,
+      "name": "Brick Floor",
+      "nameChinese": "紅磚地板",
+      "colorable": true,
+      "image": "item-201.png",
+      "color": "#e66d48",
+      "hex": 15101256
+    },
+    {
+      "id": "blk-214",
+      "itemId": 214,
+      "name": "Block Light",
+      "nameChinese": "方塊燈",
+      "colorable": true,
+      "image": "item-214.png",
+      "color": "#8ed3ea",
+      "hex": 9360362
+    },
+    {
+      "id": "blk-215",
+      "itemId": 215,
+      "name": "Scale Tile",
+      "nameChinese": "鱗片瓷磚",
+      "colorable": false,
+      "image": "item-215.png",
+      "color": "#d4b292",
+      "hex": 13939346
+    },
+    {
+      "id": "blk-221",
+      "itemId": 221,
+      "name": "Foundation",
+      "nameChinese": "房屋地基",
+      "colorable": true,
+      "image": "item-221.png",
+      "color": "#afafb7",
+      "hex": 11513783
+    },
+    {
+      "id": "blk-224",
+      "itemId": 224,
+      "name": "Glowing Stone",
+      "nameChinese": "光之石",
+      "colorable": false,
+      "image": "item-224.png",
+      "color": "#0f0d0d",
+      "hex": 986381
+    },
+    {
+      "id": "blk-225",
+      "itemId": 225,
+      "name": "Limestone",
+      "nameChinese": "石灰石",
+      "colorable": false,
+      "image": "item-225.png",
+      "color": "#e5dcac",
+      "hex": 15064236
+    },
+    {
+      "id": "blk-270",
+      "itemId": 270,
+      "name": "Iron Tiling",
+      "nameChinese": "鐵磚",
+      "colorable": true,
+      "image": "item-270.png",
+      "color": "#492b11",
+      "hex": 4795153
+    },
+    {
+      "id": "blk-271",
+      "itemId": 271,
+      "name": "Stone pillar (middle)",
+      "nameChinese": "石柱（中段）",
+      "colorable": true,
+      "image": "item-271.png",
+      "color": "#e3d6c3",
+      "hex": 14931651
+    },
+    {
+      "id": "blk-274",
+      "itemId": 274,
+      "name": "Stone pillar (lower)",
+      "nameChinese": "石柱（下段）",
+      "colorable": true,
+      "image": "item-274.png",
+      "color": "#e3d6c3",
+      "hex": 14931651
+    },
+    {
+      "id": "blk-275",
+      "itemId": 275,
+      "name": "Stone pillar (upper)",
+      "nameChinese": "石柱（上段）",
+      "colorable": true,
+      "image": "item-275.png",
+      "color": "#c7b7aa",
+      "hex": 13088682
+    },
+    {
+      "id": "blk-276",
+      "itemId": 276,
+      "name": "Marble",
+      "nameChinese": "大理石地板",
+      "colorable": true,
+      "image": "item-276.png",
+      "color": "#d5cccf",
+      "hex": 14011599
+    },
+    {
+      "id": "blk-283",
+      "itemId": 283,
+      "name": "Neon Flooring",
+      "nameChinese": "霓虹地板",
+      "colorable": true,
+      "image": "item-283.png",
+      "color": "#0d0375",
+      "hex": 852853
+    },
+    {
+      "id": "blk-284",
+      "itemId": 284,
+      "name": "Checkered floor",
+      "nameChinese": "格紋地板",
+      "colorable": false,
+      "image": "item-284.png",
+      "color": "#9a9ca6",
+      "hex": 10132646
+    },
+    {
+      "id": "blk-285",
+      "itemId": 285,
+      "name": "Cloth wall",
+      "nameChinese": "布牆",
+      "colorable": true,
+      "image": "item-285.png",
+      "color": "#b4acb0",
+      "hex": 11840688
+    },
+    {
+      "id": "blk-334",
+      "itemId": 334,
+      "name": "Crisscross wooden flooring",
+      "nameChinese": "交叉木地板",
+      "colorable": true,
+      "image": "item-334.png",
+      "color": "#f5c678",
+      "hex": 16107128
+    },
+    {
+      "id": "blk-335",
+      "itemId": 335,
+      "name": "Arched Tiling",
+      "nameChinese": "拱形磚",
+      "colorable": true,
+      "image": "item-335.png",
+      "color": "#f4786d",
+      "hex": 16021613
+    },
+    {
+      "id": "blk-336",
+      "itemId": 336,
+      "name": "Hay Pile",
+      "nameChinese": "乾草堆",
+      "colorable": false,
+      "image": "item-336.png",
+      "color": "#fbcb01",
+      "hex": 16501505
+    },
+    {
+      "id": "blk-340",
+      "itemId": 340,
+      "name": "Wooden Flooring",
+      "nameChinese": "木地板",
+      "colorable": true,
+      "image": "item-340.png",
+      "color": "#888888",
+      "hex": 8947848
+    },
+    {
+      "id": "blk-341",
+      "itemId": 341,
+      "name": "Plaster wall",
+      "nameChinese": "灰泥牆",
+      "colorable": true,
+      "image": "item-341.png",
+      "color": "#d8d7b9",
+      "hex": 14211001
+    },
+    {
+      "id": "blk-342",
+      "itemId": 342,
+      "name": "Wood Flooring",
+      "nameChinese": "木地板",
+      "colorable": false,
+      "image": "item-342.png",
+      "color": "#888888",
+      "hex": 8947848
+    },
+    {
+      "id": "blk-369",
+      "itemId": 369,
+      "name": "Stylish Wall (Bottom)",
+      "nameChinese": "時尚牆壁・下",
+      "colorable": true,
+      "image": "item-369.png",
+      "color": "#93b0cf",
+      "hex": 9679055
+    },
+    {
+      "id": "blk-376",
+      "itemId": 376,
+      "name": "Felt Mat",
+      "nameChinese": "毛氈墊",
+      "colorable": false,
+      "image": "item-376.png",
+      "color": "#cececb",
+      "hex": 13553355
+    },
+    {
+      "id": "blk-382",
+      "itemId": 382,
+      "name": "Wooden Wall",
+      "nameChinese": "木牆",
+      "colorable": true,
+      "image": "item-382.png",
+      "color": "#8c5a0d",
+      "hex": 9198093
+    },
+    {
+      "id": "blk-383",
+      "itemId": 383,
+      "name": "Stone Flooring",
+      "nameChinese": "石地板",
+      "colorable": true,
+      "image": "item-383.png",
+      "color": "#bec79a",
+      "hex": 12502938
+    },
+    {
+      "id": "blk-384",
+      "itemId": 384,
+      "name": "Cobblestone wall",
+      "nameChinese": "碎石牆",
+      "colorable": false,
+      "image": "item-384.png",
+      "color": "#8e9094",
+      "hex": 9343124
+    },
+    {
+      "id": "blk-397",
+      "itemId": 397,
+      "name": "Scrap Cube",
+      "nameChinese": "廢鐵方塊",
+      "colorable": false,
+      "image": "item-397.png",
+      "color": "#8ed2ec",
+      "hex": 9360108
+    },
+    {
+      "id": "blk-424",
+      "itemId": 424,
+      "name": "Lined-Stone Flooring",
+      "nameChinese": "石紋地板",
+      "colorable": true,
+      "image": "item-424.png",
+      "color": "#bbc29d",
+      "hex": 12305053
+    },
+    {
+      "id": "blk-425",
+      "itemId": 425,
+      "name": "Square Tiling",
+      "nameChinese": "簡約方磚",
+      "colorable": true,
+      "image": "item-425.png",
+      "color": "#cecece",
+      "hex": 13553358
+    },
+    {
+      "id": "blk-426",
+      "itemId": 426,
+      "name": "Stylish Tiling",
+      "nameChinese": "時尚磚",
+      "colorable": true,
+      "image": "item-426.png",
+      "color": "#8fafb5",
+      "hex": 9416629
+    },
+    {
+      "id": "blk-428",
+      "itemId": 428,
+      "name": "Stone Tiling",
+      "nameChinese": "石磚",
+      "colorable": true,
+      "image": "item-428.png",
+      "color": "#969394",
+      "hex": 9868180
+    },
+    {
+      "id": "blk-429",
+      "itemId": 429,
+      "name": "Square Tiling",
+      "nameChinese": "方磚",
+      "colorable": false,
+      "image": "item-429.png",
+      "color": "#f9eab5",
+      "hex": 16378549
+    },
+    {
+      "id": "blk-442",
+      "itemId": 442,
+      "name": "Beach Sand",
+      "nameChinese": "海邊沙",
+      "colorable": false,
+      "image": "item-442.png",
+      "color": "#ebd099",
+      "hex": 15454361
+    },
+    {
+      "id": "blk-447",
+      "itemId": 447,
+      "name": "Scrap Cube",
+      "nameChinese": "廢鐵方塊",
+      "colorable": false,
+      "image": "item-447.png",
+      "color": "#918e8e",
+      "hex": 9539214
+    },
+    {
+      "id": "blk-508",
+      "itemId": 508,
+      "name": "Volcanic Ash",
+      "nameChinese": "火山灰",
+      "colorable": false,
+      "image": "item-508.png",
+      "color": "#73706b",
+      "hex": 7565419
+    },
+    {
+      "id": "blk-561",
+      "itemId": 561,
+      "name": "Puffy-Tree Pillar",
+      "nameChinese": "蓬鬆樹柱",
+      "colorable": false,
+      "image": "item-561.png",
+      "color": "#885602",
+      "hex": 8934914
+    },
+    {
+      "id": "blk-562",
+      "itemId": 562,
+      "name": "Grass Flooring",
+      "nameChinese": "草坪地板",
+      "colorable": false,
+      "image": "item-562.png",
+      "color": "#6b9446",
+      "hex": 7050310
+    },
+    {
+      "id": "blk-601",
+      "itemId": 601,
+      "name": "Stylish iron wall",
+      "nameChinese": "時尚鐵牆",
+      "colorable": false,
+      "image": "item-601.png",
+      "color": "#888888",
+      "hex": 8947848
+    },
+    {
+      "id": "blk-602",
+      "itemId": 602,
+      "name": "Modern carpet",
+      "nameChinese": "現代風地毯",
+      "colorable": true,
+      "image": "item-602.png",
+      "color": "#888888",
+      "hex": 8947848
+    },
+    {
+      "id": "blk-612",
+      "itemId": 612,
+      "name": "Mosaic Tiling",
+      "nameChinese": "馬賽克磚",
+      "colorable": true,
+      "image": "item-612.png",
+      "color": "#fdf692",
+      "hex": 16643730
+    },
+    {
+      "id": "blk-617",
+      "itemId": 617,
+      "name": "Concrete wall",
+      "nameChinese": "清水模牆",
+      "colorable": false,
+      "image": "item-617.png",
+      "color": "#b5b6b0",
+      "hex": 11908784
+    },
+    {
+      "id": "blk-623",
+      "itemId": 623,
+      "name": "Dark marble flooring",
+      "nameChinese": "深色大理石地板",
+      "colorable": true,
+      "image": "item-623.png",
+      "color": "#956c52",
+      "hex": 9792594
+    },
+    {
+      "id": "blk-715",
+      "itemId": 715,
+      "name": "Hexagonal flooring",
+      "nameChinese": "六角形地板",
+      "colorable": true,
+      "image": "item-715.png",
+      "color": "#b9b8b2",
+      "hex": 12171442
+    },
+    {
+      "id": "blk-718",
+      "itemId": 718,
+      "name": "Asphalt Road",
+      "nameChinese": "柏油路",
+      "colorable": false,
+      "image": "item-718.png",
+      "color": "#9199a6",
+      "hex": 9542054
+    },
+    {
+      "id": "blk-724",
+      "itemId": 724,
+      "name": "Rough wall",
+      "nameChinese": "粗糙牆壁",
+      "colorable": true,
+      "image": "item-724.png",
+      "color": "#dbca85",
+      "hex": 14404229
+    },
+    {
+      "id": "blk-726",
+      "itemId": 726,
+      "name": "Pokémon Center wall (upper)",
+      "nameChinese": "寶可夢中心牆（上段）",
+      "colorable": true,
+      "image": "item-726.png",
+      "color": "#fecf6e",
+      "hex": 16699246
+    },
+    {
+      "id": "blk-727",
+      "itemId": 727,
+      "name": "Pokémon Center wall (middle)",
+      "nameChinese": "寶可夢中心牆（中段）",
+      "colorable": true,
+      "image": "item-727.png",
+      "color": "#ffcf6d",
+      "hex": 16764781
+    },
+    {
+      "id": "blk-728",
+      "itemId": 728,
+      "name": "Pokémon Center wall (lower)",
+      "nameChinese": "寶可夢中心牆（下段）",
+      "colorable": true,
+      "image": "item-728.png",
+      "color": "#f09449",
+      "hex": 15766601
+    },
+    {
+      "id": "blk-729",
+      "itemId": 729,
+      "name": "Pokémon Center wall (border)",
+      "nameChinese": "寶可夢中心牆（邊框）",
+      "colorable": true,
+      "image": "item-729.png",
+      "color": "#fc5819",
+      "hex": 16537625
+    },
+    {
+      "id": "blk-731",
+      "itemId": 731,
+      "name": "Berry pattern",
+      "nameChinese": "樹果圖樣",
+      "colorable": true,
+      "image": "item-731.png",
+      "color": "#d2cdd1",
+      "hex": 13815249
+    },
+    {
+      "id": "blk-732",
+      "itemId": 732,
+      "name": "Simple Flooring",
+      "nameChinese": "商店地板",
+      "colorable": false,
+      "image": "item-732.png",
+      "color": "#c6d7d1",
+      "hex": 13031377
+    },
+    {
+      "id": "blk-738",
+      "itemId": 738,
+      "name": "Striped Soil",
+      "nameChinese": "條紋土地",
+      "colorable": false,
+      "image": "item-738.png",
+      "color": "#b48457",
+      "hex": 11830359
+    },
+    {
+      "id": "blk-745",
+      "itemId": 745,
+      "name": "Ball pattern",
+      "nameChinese": "寶可夢球圖樣",
+      "colorable": false,
+      "image": "item-745.png",
+      "color": "#fed201",
+      "hex": 16699905
+    },
+    {
+      "id": "blk-758",
+      "itemId": 758,
+      "name": "Coarse Cliff Rock",
+      "nameChinese": "粗糙崖岩",
+      "colorable": false,
+      "image": "item-758.png",
+      "color": "#b3cecc",
+      "hex": 11783884
+    },
+    {
+      "id": "blk-759",
+      "itemId": 759,
+      "name": "Light Brown Cliff Rock",
+      "nameChinese": "淺棕崖岩",
+      "colorable": false,
+      "image": "item-759.png",
+      "color": "#f19159",
+      "hex": 15831385
+    },
+    {
+      "id": "blk-760",
+      "itemId": 760,
+      "name": "Red Cliff Rock",
+      "nameChinese": "紅色崖岩",
+      "colorable": false,
+      "image": "item-760.png",
+      "color": "#94554a",
+      "hex": 9721162
+    },
+    {
+      "id": "blk-761",
+      "itemId": 761,
+      "name": "Carved Yellow Rock",
+      "nameChinese": "黃色崖岩",
+      "colorable": false,
+      "image": "item-761.png",
+      "color": "#fef32b",
+      "hex": 16708395
+    },
+    {
+      "id": "blk-762",
+      "itemId": 762,
+      "name": "Coarse Cliff Rock",
+      "nameChinese": "粗糙崖岩",
+      "colorable": false,
+      "image": "item-762.png",
+      "color": "#b3cbc7",
+      "hex": 11783111
+    },
+    {
+      "id": "blk-763",
+      "itemId": 763,
+      "name": "Light Brown Cliff Rock",
+      "nameChinese": "淺棕崖岩",
+      "colorable": false,
+      "image": "item-763.png",
+      "color": "#ed8c55",
+      "hex": 15567957
+    },
+    {
+      "id": "blk-764",
+      "itemId": 764,
+      "name": "Red Cliff Rock",
+      "nameChinese": "紅色崖岩",
+      "colorable": false,
+      "image": "item-764.png",
+      "color": "#a86553",
+      "hex": 11035987
+    },
+    {
+      "id": "blk-765",
+      "itemId": 765,
+      "name": "Carved Yellow Rock",
+      "nameChinese": "黃色崖岩",
+      "colorable": false,
+      "image": "item-765.png",
+      "color": "#fbec19",
+      "hex": 16509977
+    },
+    {
+      "id": "blk-766",
+      "itemId": 766,
+      "name": "White Cliff Rock",
+      "nameChinese": "白色崖岩",
+      "colorable": false,
+      "image": "item-766.png",
+      "color": "#d2cfcc",
+      "hex": 13815756
+    },
+    {
+      "id": "blk-767",
+      "itemId": 767,
+      "name": "White Cliff Rock",
+      "nameChinese": "白色崖岩",
+      "colorable": false,
+      "image": "item-767.png",
+      "color": "#b6b0ad",
+      "hex": 11972781
+    },
+    {
+      "id": "blk-768",
+      "itemId": 768,
+      "name": "Light antique wall (upper)",
+      "nameChinese": "淺色古典牆（上段）",
+      "colorable": true,
+      "image": "item-768.png",
+      "color": "#ecd3b5",
+      "hex": 15520693
+    },
+    {
+      "id": "blk-769",
+      "itemId": 769,
+      "name": "Light antique wall (middle)",
+      "nameChinese": "淺色古典牆（中段）",
+      "colorable": true,
+      "image": "item-769.png",
+      "color": "#ebcfb0",
+      "hex": 15454128
+    },
+    {
+      "id": "blk-770",
+      "itemId": 770,
+      "name": "Light antique wall (lower)",
+      "nameChinese": "淺色古典牆（下段）",
+      "colorable": true,
+      "image": "item-770.png",
+      "color": "#e9d1b4",
+      "hex": 15323572
+    },
+    {
+      "id": "blk-771",
+      "itemId": 771,
+      "name": "Cracked sandstone",
+      "nameChinese": "龜裂砂岩",
+      "colorable": false,
+      "image": "item-771.png",
+      "color": "#fdb155",
+      "hex": 16626005
+    },
+    {
+      "id": "blk-772",
+      "itemId": 772,
+      "name": "Cracked sandstone",
+      "nameChinese": "龜裂砂岩",
+      "colorable": false,
+      "image": "item-772.png",
+      "color": "#ffb853",
+      "hex": 16758867
+    },
+    {
+      "id": "blk-778",
+      "itemId": 778,
+      "name": "Antique wall (upper)",
+      "nameChinese": "古典牆（上段）",
+      "colorable": true,
+      "image": "item-778.png",
+      "color": "#ad6709",
+      "hex": 11364105
+    },
+    {
+      "id": "blk-779",
+      "itemId": 779,
+      "name": "Antique wall (middle)",
+      "nameChinese": "古典牆（中段）",
+      "colorable": true,
+      "image": "item-779.png",
+      "color": "#94520c",
+      "hex": 9720332
+    },
+    {
+      "id": "blk-780",
+      "itemId": 780,
+      "name": "Antique wall (lower)",
+      "nameChinese": "古典牆（下段）",
+      "colorable": true,
+      "image": "item-780.png",
+      "color": "#915207",
+      "hex": 9523719
+    },
+    {
+      "id": "blk-790",
+      "itemId": 790,
+      "name": "Light wooden wall",
+      "nameChinese": "淺色木牆",
+      "colorable": false,
+      "image": "item-790.png",
+      "color": "#f2c34f",
+      "hex": 15909711
+    },
+    {
+      "id": "blk-825",
+      "itemId": 825,
+      "name": "Modern wall",
+      "nameChinese": "現代風牆",
+      "colorable": true,
+      "image": "item-825.png",
+      "color": "#f2ca91",
+      "hex": 15911569
+    },
+    {
+      "id": "blk-826",
+      "itemId": 826,
+      "name": "Polka dot pattern",
+      "nameChinese": "水玉點點圖樣",
+      "colorable": true,
+      "image": "item-826.png",
+      "color": "#fd3356",
+      "hex": 16593750
+    },
+    {
+      "id": "blk-828",
+      "itemId": 828,
+      "name": "Painted wall",
+      "nameChinese": "油漆牆",
+      "colorable": true,
+      "image": "item-828.png",
+      "color": "#ccb3a9",
+      "hex": 13415337
+    },
+    {
+      "id": "blk-829",
+      "itemId": 829,
+      "name": "Simple Flooring",
+      "nameChinese": "簡約地板",
+      "colorable": true,
+      "image": "item-829.png",
+      "color": "#caafac",
+      "hex": 13283244
+    },
+    {
+      "id": "blk-831",
+      "itemId": 831,
+      "name": "Ordinary Soil",
+      "nameChinese": "普通泥土",
+      "colorable": false,
+      "image": "item-831.png",
+      "color": "#fdd18f",
+      "hex": 16634255
+    },
+    {
+      "id": "blk-833",
+      "itemId": 833,
+      "name": "Meadow grass",
+      "nameChinese": "草原草地",
+      "colorable": false,
+      "image": "item-833.png",
+      "color": "#fdd08d",
+      "hex": 16633997
+    },
+    {
+      "id": "blk-839",
+      "itemId": 839,
+      "name": "Gingham check",
+      "nameChinese": "格紋圖樣",
+      "colorable": true,
+      "image": "item-839.png",
+      "color": "#6eebfe",
+      "hex": 7269374
+    },
+    {
+      "id": "blk-840",
+      "itemId": 840,
+      "name": "Starry-sky wall",
+      "nameChinese": "星空牆",
+      "colorable": false,
+      "image": "item-840.png",
+      "color": "#182a8b",
+      "hex": 1583755
+    },
+    {
+      "id": "blk-841",
+      "itemId": 841,
+      "name": "Seawall",
+      "nameChinese": "防波堤",
+      "colorable": true,
+      "image": "item-841.png",
+      "color": "#cbcacc",
+      "hex": 13355724
+    },
+    {
+      "id": "blk-846",
+      "itemId": 846,
+      "name": "Fluffy carpet",
+      "nameChinese": "蓬鬆地毯",
+      "colorable": true,
+      "image": "item-846.png",
+      "color": "#0079a8",
+      "hex": 31144
+    },
+    {
+      "id": "blk-849",
+      "itemId": 849,
+      "name": "Brick wall",
+      "nameChinese": "磚牆",
+      "colorable": true,
+      "image": "item-849.png",
+      "color": "#e96733",
+      "hex": 15296307
+    },
+    {
+      "id": "blk-851",
+      "itemId": 851,
+      "name": "Stylish Ball pattern",
+      "nameChinese": "時尚寶可夢球圖樣",
+      "colorable": false,
+      "image": "item-851.png",
+      "color": "#ca1256",
+      "hex": 13242966
+    },
+    {
+      "id": "blk-853",
+      "itemId": 853,
+      "name": "Leather Wall",
+      "nameChinese": "皮革牆",
+      "colorable": false,
+      "image": "item-853.png",
+      "color": "#ec3451",
+      "hex": 15479889
+    },
+    {
+      "id": "blk-854",
+      "itemId": 854,
+      "name": "Block Light",
+      "nameChinese": "方塊燈",
+      "colorable": true,
+      "image": "item-854.png",
+      "color": "#b1acd4",
+      "hex": 11644116
+    },
+    {
+      "id": "blk-856",
+      "itemId": 856,
+      "name": "Iron Wall",
+      "nameChinese": "鐵牆",
+      "colorable": false,
+      "image": "item-856.png",
+      "color": "#727177",
+      "hex": 7500151
+    },
+    {
+      "id": "blk-857",
+      "itemId": 857,
+      "name": "Stylish Floor Stone",
+      "nameChinese": "時尚地磚",
+      "colorable": false,
+      "image": "item-857.png",
+      "color": "#9395ab",
+      "hex": 9672107
+    },
+    {
+      "id": "blk-868",
+      "itemId": 868,
+      "name": "Vertical Line Wall",
+      "nameChinese": "直紋牆壁",
+      "colorable": true,
+      "image": "item-868.png",
+      "color": "#495daa",
+      "hex": 4808106
+    },
+    {
+      "id": "blk-875",
+      "itemId": 875,
+      "name": "Mysterious Stone",
+      "nameChinese": "謎之石",
+      "colorable": false,
+      "image": "item-875.png",
+      "color": "#6face6",
+      "hex": 7318758
+    },
+    {
+      "id": "blk-908",
+      "itemId": 908,
+      "name": "Guest Room Wallpaper",
+      "nameChinese": "客房牆壁",
+      "colorable": true,
+      "image": "item-908.png",
+      "color": "#cfcfcf",
+      "hex": 13619151
+    },
+    {
+      "id": "blk-910",
+      "itemId": 910,
+      "name": "Danger Zone Wall",
+      "nameChinese": "危險地帶牆壁",
+      "colorable": false,
+      "image": "item-910.png",
+      "color": "#4f4c4b",
+      "hex": 5196875
+    },
+    {
+      "id": "blk-912",
+      "itemId": 912,
+      "name": "Cotton Floor",
+      "nameChinese": "棉花地板",
+      "colorable": false,
+      "image": "item-912.png",
+      "color": "#d4cccb",
+      "hex": 13946059
+    },
+    {
+      "id": "blk-920",
+      "itemId": 920,
+      "name": "Bronze Wall",
+      "nameChinese": "青銅牆壁",
+      "colorable": false,
+      "image": "item-920.png",
+      "color": "#8f5c2c",
+      "hex": 9395244
+    },
+    {
+      "id": "blk-923",
+      "itemId": 923,
+      "name": "Crystal Wall",
+      "nameChinese": "水晶牆",
+      "colorable": false,
+      "image": "item-923.png",
+      "color": "#4cd3fa",
+      "hex": 5035002
+    },
+    {
+      "id": "blk-925",
+      "itemId": 925,
+      "name": "Gray Circle Floor",
+      "nameChinese": "灰色圓圈地板",
+      "colorable": false,
+      "image": "item-925.png",
+      "color": "#cfccc9",
+      "hex": 13618377
+    },
+    {
+      "id": "blk-926",
+      "itemId": 926,
+      "name": "Crisscross Wood Floor",
+      "nameChinese": "縱橫木紋地板",
+      "colorable": false,
+      "image": "item-926.png",
+      "color": "#8e5031",
+      "hex": 9326641
+    },
+    {
+      "id": "blk-927",
+      "itemId": 927,
+      "name": "Cracked Tile Wall",
+      "nameChinese": "碎磚牆",
+      "colorable": true,
+      "image": "item-927.png",
+      "color": "#f3cccc",
+      "hex": 15977676
+    },
+    {
+      "id": "blk-928",
+      "itemId": 928,
+      "name": "Triangle Pattern Floor",
+      "nameChinese": "三角花紋地板",
+      "colorable": true,
+      "image": "item-928.png",
+      "color": "#f2d8b0",
+      "hex": 15915184
+    },
+    {
+      "id": "blk-931",
+      "itemId": 931,
+      "name": "Poké Ball Wall",
+      "nameChinese": "精靈球牆壁",
+      "colorable": true,
+      "image": "item-931.png",
+      "color": "#d0c9c9",
+      "hex": 13683145
+    },
+    {
+      "id": "blk-932",
+      "itemId": 932,
+      "name": "Golden Wall",
+      "nameChinese": "黃金牆",
+      "colorable": false,
+      "image": "item-932.png",
+      "color": "#aa8c27",
+      "hex": 11176999
+    },
+    {
+      "id": "blk-933",
+      "itemId": 933,
+      "name": "Iron Plate",
+      "nameChinese": "鐵板",
+      "colorable": false,
+      "image": "item-933.png",
+      "color": "#c6bab6",
+      "hex": 13023926
+    },
+    {
+      "id": "blk-935",
+      "itemId": 935,
+      "name": "Stylish Bronze Wall",
+      "nameChinese": "時尚青銅牆",
+      "colorable": false,
+      "image": "item-935.png",
+      "color": "#8c582c",
+      "hex": 9197612
+    },
+    {
+      "id": "blk-936",
+      "itemId": 936,
+      "name": "Felt Mat",
+      "nameChinese": "毛氈墊",
+      "colorable": false,
+      "image": "item-936.png",
+      "color": "#d5cac8",
+      "hex": 14011080
+    },
+    {
+      "id": "blk-939",
+      "itemId": 939,
+      "name": "Marble Floor (Light)",
+      "nameChinese": "大理石地板・淺色",
+      "colorable": true,
+      "image": "item-939.png",
+      "color": "#9c8470",
+      "hex": 10257520
+    },
+    {
+      "id": "blk-940",
+      "itemId": 940,
+      "name": "Tatami",
+      "nameChinese": "榻榻米",
+      "colorable": false,
+      "image": "item-940.png",
+      "color": "#bab769",
+      "hex": 12236649
+    },
+    {
+      "id": "blk-941",
+      "itemId": 941,
+      "name": "Luxurious Carpet",
+      "nameChinese": "豪華地毯",
+      "colorable": true,
+      "image": "item-941.png",
+      "color": "#b82d02",
+      "hex": 12070146
+    },
+    {
+      "id": "blk-945",
+      "itemId": 945,
+      "name": "Neon Floor",
+      "nameChinese": "霓虹地板",
+      "colorable": false,
+      "image": "item-945.png",
+      "color": "#f485f9",
+      "hex": 16025081
+    },
+    {
+      "id": "blk-947",
+      "itemId": 947,
+      "name": "Iron Plate Floor",
+      "nameChinese": "鐵板地板",
+      "colorable": true,
+      "image": "item-947.png",
+      "color": "#767476",
+      "hex": 7763062
+    },
+    {
+      "id": "blk-951",
+      "itemId": 951,
+      "name": "Stone Brick Wall",
+      "nameChinese": "石磚牆",
+      "colorable": true,
+      "image": "item-951.png",
+      "color": "#888888",
+      "hex": 8947848
+    },
+    {
+      "id": "blk-952",
+      "itemId": 952,
+      "name": "Brick Floor",
+      "nameChinese": "紅磚地板",
+      "colorable": true,
+      "image": "item-952.png",
+      "color": "#888888",
+      "hex": 8947848
+    },
+    {
+      "id": "blk-956",
+      "itemId": 956,
+      "name": "Stylish Brick (Top)",
+      "nameChinese": "時尚磚塊・上",
+      "colorable": true,
+      "image": "item-956.png",
+      "color": "#888888",
+      "hex": 8947848
+    },
+    {
+      "id": "blk-957",
+      "itemId": 957,
+      "name": "Stylish Brick (Middle)",
+      "nameChinese": "時尚磚塊・中",
+      "colorable": true,
+      "image": "item-957.png",
+      "color": "#888888",
+      "hex": 8947848
+    },
+    {
+      "id": "blk-958",
+      "itemId": 958,
+      "name": "Stylish Brick (Bottom)",
+      "nameChinese": "時尚磚塊・下",
+      "colorable": true,
+      "image": "item-958.png",
+      "color": "#888888",
+      "hex": 8947848
+    },
+    {
+      "id": "blk-965",
+      "itemId": 965,
+      "name": "Staggered Lattice",
+      "nameChinese": "千鳥格柵",
+      "colorable": false,
+      "image": "item-965.png",
+      "color": "#50f6ee",
+      "hex": 5306094
+    },
+    {
+      "id": "blk-969",
+      "itemId": 969,
+      "name": "Old Stone Wall",
+      "nameChinese": "老舊石牆",
+      "colorable": false,
+      "image": "item-969.png",
+      "color": "#8b958e",
+      "hex": 9147790
+    },
+    {
+      "id": "blk-970",
+      "itemId": 970,
+      "name": "Old Stone Wall Pattern",
+      "nameChinese": "老舊石牆圖案",
+      "colorable": false,
+      "image": "item-970.png",
+      "color": "#d0d0c8",
+      "hex": 13684936
+    },
+    {
+      "id": "blk-971",
+      "itemId": 971,
+      "name": "Old Stone Floor",
+      "nameChinese": "老舊石地板",
+      "colorable": false,
+      "image": "item-971.png",
+      "color": "#8fa796",
+      "hex": 9414550
+    },
+    {
+      "id": "blk-972",
+      "itemId": 972,
+      "name": "Bubble Pattern",
+      "nameChinese": "泡泡圖案",
+      "colorable": false,
+      "image": "item-972.png",
+      "color": "#cab1af",
+      "hex": 13283759
+    },
+    {
+      "id": "blk-1016",
+      "itemId": 1016,
+      "name": "Stylish Golden Wall",
+      "nameChinese": "時尚黃金牆",
+      "colorable": false,
+      "image": "item-1016.png",
+      "color": "#ad8f2c",
+      "hex": 11374380
+    },
+    {
+      "id": "blk-1017",
+      "itemId": 1017,
+      "name": "Stylish Wall (Top)",
+      "nameChinese": "時尚牆壁・上",
+      "colorable": true,
+      "image": "item-1017.png",
+      "color": "#967259",
+      "hex": 9859673
+    },
+    {
+      "id": "blk-1018",
+      "itemId": 1018,
+      "name": "Stylish Wall (Middle)",
+      "nameChinese": "時尚牆壁・中",
+      "colorable": true,
+      "image": "item-1018.png",
+      "color": "#d9dac7",
+      "hex": 14277319
+    },
+    {
+      "id": "blk-1019",
+      "itemId": 1019,
+      "name": "Stylish Wall (Bottom)",
+      "nameChinese": "時尚牆壁・下",
+      "colorable": true,
+      "image": "item-1019.png",
+      "color": "#977259",
+      "hex": 9925209
+    },
+    {
+      "id": "blk-1020",
+      "itemId": 1020,
+      "name": "Wooden Pillar (Top)",
+      "nameChinese": "木柱・上",
+      "colorable": true,
+      "image": "item-1020.png",
+      "color": "#764d34",
+      "hex": 7753012
+    },
+    {
+      "id": "blk-1021",
+      "itemId": 1021,
+      "name": "Middle Wooden Pillar",
+      "nameChinese": "木柱・中",
+      "colorable": true,
+      "image": "item-1021.png",
+      "color": "#7a4f30",
+      "hex": 8015664
+    },
+    {
+      "id": "blk-1022",
+      "itemId": 1022,
+      "name": "Bottom Wooden Pillar",
+      "nameChinese": "木柱・下",
+      "colorable": true,
+      "image": "item-1022.png",
+      "color": "#71452a",
+      "hex": 7423274
+    },
+    {
+      "id": "blk-1026",
+      "itemId": 1026,
+      "name": "Pop Wall (Top)",
+      "nameChinese": "流行風牆壁・上",
+      "colorable": true,
+      "image": "item-1026.png",
+      "color": "#908876",
+      "hex": 9472118
+    },
+    {
+      "id": "blk-1027",
+      "itemId": 1027,
+      "name": "Pop Wall (Middle)",
+      "nameChinese": "流行風牆壁・中",
+      "colorable": true,
+      "image": "item-1027.png",
+      "color": "#e3d29b",
+      "hex": 14930587
+    },
+    {
+      "id": "blk-1028",
+      "itemId": 1028,
+      "name": "Pop Wall (Bottom)",
+      "nameChinese": "流行風牆壁・下",
+      "colorable": true,
+      "image": "item-1028.png",
+      "color": "#877c6a",
+      "hex": 8879210
+    },
+    {
+      "id": "blk-1029",
+      "itemId": 1029,
+      "name": "Sweet Wall (Top)",
+      "nameChinese": "甜點牆壁・上",
+      "colorable": true,
+      "image": "item-1029.png",
+      "color": "#fd9387",
+      "hex": 16618375
+    },
+    {
+      "id": "blk-1030",
+      "itemId": 1030,
+      "name": "Sweet Wall (Middle)",
+      "nameChinese": "甜點牆壁・中",
+      "colorable": true,
+      "image": "item-1030.png",
+      "color": "#d39287",
+      "hex": 13865607
+    },
+    {
+      "id": "blk-1031",
+      "itemId": 1031,
+      "name": "Sweet Wall (Bottom)",
+      "nameChinese": "甜點牆壁・下",
+      "colorable": true,
+      "image": "item-1031.png",
+      "color": "#89b6d0",
+      "hex": 9025232
+    },
+    {
+      "id": "blk-1032",
+      "itemId": 1032,
+      "name": "Scale Tile",
+      "nameChinese": "鱗片瓷磚",
+      "colorable": false,
+      "image": "item-1032.png",
+      "color": "#b8acb2",
+      "hex": 12102834
+    },
+    {
+      "id": "blk-1033",
+      "itemId": 1033,
+      "name": "White Line Road (Horizontal)",
+      "nameChinese": "白線道路・橫",
+      "colorable": false,
+      "image": "item-1033.png",
+      "color": "#9198a8",
+      "hex": 9541800
+    },
+    {
+      "id": "blk-1034",
+      "itemId": 1034,
+      "name": "White Line Path (Vertical)",
+      "nameChinese": "白線道路・縱向",
+      "colorable": false,
+      "image": "item-1034.png",
+      "color": "#9097a7",
+      "hex": 9476007
+    },
+    {
+      "id": "blk-1035",
+      "itemId": 1035,
+      "name": "Foundation",
+      "nameChinese": "房屋地基",
+      "colorable": true,
+      "image": "item-1035.png",
+      "color": "#daaa88",
+      "hex": 14330504
+    },
+    {
+      "id": "blk-1036",
+      "itemId": 1036,
+      "name": "Vertical Stripes",
+      "nameChinese": "垂直條紋",
+      "colorable": true,
+      "image": "item-1036.png",
+      "color": "#4353ce",
+      "hex": 4412366
+    },
+    {
+      "id": "blk-1037",
+      "itemId": 1037,
+      "name": "Horizontal Stripes",
+      "nameChinese": "橫條紋",
+      "colorable": true,
+      "image": "item-1037.png",
+      "color": "#394fd0",
+      "hex": 3755984
+    },
+    {
+      "id": "blk-1038",
+      "itemId": 1038,
+      "name": "Tartan Plaid",
+      "nameChinese": "蘇格蘭格紋",
+      "colorable": false,
+      "image": "item-1038.png",
+      "color": "#026f70",
+      "hex": 159600
+    },
+    {
+      "id": "blk-1039",
+      "itemId": 1039,
+      "name": "Argyle Check",
+      "nameChinese": "菱格紋",
+      "colorable": false,
+      "image": "item-1039.png",
+      "color": "#af0b04",
+      "hex": 11471620
+    },
+    {
+      "id": "blk-1040",
+      "itemId": 1040,
+      "name": "Arabesque Pattern",
+      "nameChinese": "唐草紋",
+      "colorable": false,
+      "image": "item-1040.png",
+      "color": "#ceebb5",
+      "hex": 13560757
+    },
+    {
+      "id": "blk-1041",
+      "itemId": 1041,
+      "name": "Swirl Pattern",
+      "nameChinese": "螺旋花紋",
+      "colorable": true,
+      "image": "item-1041.png",
+      "color": "#fcd7c7",
+      "hex": 16570311
+    },
+    {
+      "id": "blk-1042",
+      "itemId": 1042,
+      "name": "Winter Pattern",
+      "nameChinese": "冬季圖案",
+      "colorable": true,
+      "image": "item-1042.png",
+      "color": "#4a388d",
+      "hex": 4864141
+    },
+    {
+      "id": "blk-1043",
+      "itemId": 1043,
+      "name": "Zigzag Pattern",
+      "nameChinese": "鋸齒紋路",
+      "colorable": false,
+      "image": "item-1043.png",
+      "color": "#f6ef91",
+      "hex": 16183185
+    },
+    {
+      "id": "blk-1044",
+      "itemId": 1044,
+      "name": "Leaf Pattern",
+      "nameChinese": "葉子圖案",
+      "colorable": false,
+      "image": "item-1044.png",
+      "color": "#ceb5a8",
+      "hex": 13546920
+    },
+    {
+      "id": "blk-1045",
+      "itemId": 1045,
+      "name": "Flower Pattern",
+      "nameChinese": "花朵圖案",
+      "colorable": true,
+      "image": "item-1045.png",
+      "color": "#f3b3d0",
+      "hex": 15971280
+    },
+    {
+      "id": "blk-1046",
+      "itemId": 1046,
+      "name": "Star Pattern",
+      "nameChinese": "星星圖案",
+      "colorable": true,
+      "image": "item-1046.png",
+      "color": "#b4aeaf",
+      "hex": 11841199
+    },
+    {
+      "id": "blk-1047",
+      "itemId": 1047,
+      "name": "Curry Pattern",
+      "nameChinese": "咖哩紋路",
+      "colorable": true,
+      "image": "item-1047.png",
+      "color": "#cfd0cc",
+      "hex": 13619404
+    },
+    {
+      "id": "blk-1115",
+      "itemId": 1115,
+      "name": "Cliff rock",
+      "nameChinese": "懸崖岩石",
+      "colorable": false,
+      "image": "item-1115.png",
+      "color": "#fed06a",
+      "hex": 16699498
+    },
+    {
+      "id": "blk-1116",
+      "itemId": 1116,
+      "name": "Grainy Cliff Rock",
+      "nameChinese": "顆粒懸崖岩石",
+      "colorable": false,
+      "image": "item-1116.png",
+      "color": "#f9b356",
+      "hex": 16364374
+    },
+    {
+      "id": "blk-1117",
+      "itemId": 1117,
+      "name": "Red Cliff Rock",
+      "nameChinese": "赤色懸崖岩",
+      "colorable": false,
+      "image": "item-1117.png",
+      "color": "#feae6e",
+      "hex": 16690798
+    },
+    {
+      "id": "blk-1118",
+      "itemId": 1118,
+      "name": "Red Speckled Cliff Rock",
+      "nameChinese": "紅色顆粒懸崖岩",
+      "colorable": false,
+      "image": "item-1118.png",
+      "color": "#fc9667",
+      "hex": 16553575
+    },
+    {
+      "id": "blk-1119",
+      "itemId": 1119,
+      "name": "Black Cliff Rock",
+      "nameChinese": "黑崖岩",
+      "colorable": false,
+      "image": "item-1119.png",
+      "color": "#6b574c",
+      "hex": 7034700
+    },
+    {
+      "id": "blk-1120",
+      "itemId": 1120,
+      "name": "Black Speckled Cliff Rock",
+      "nameChinese": "黑粒崖岩",
+      "colorable": false,
+      "image": "item-1120.png",
+      "color": "#57504f",
+      "hex": 5722191
+    },
+    {
+      "id": "blk-1121",
+      "itemId": 1121,
+      "name": "Floating Island Cliff Rock",
+      "nameChinese": "浮島懸崖岩",
+      "colorable": false,
+      "image": "item-1121.png",
+      "color": "#eacb7a",
+      "hex": 15387514
+    },
+    {
+      "id": "blk-1122",
+      "itemId": 1122,
+      "name": "Floating Island Speckled Cliff Rock",
+      "nameChinese": "浮島顆粒懸崖岩",
+      "colorable": false,
+      "image": "item-1122.png",
+      "color": "#e9d28c",
+      "hex": 15323788
+    },
+    {
+      "id": "blk-1123",
+      "itemId": 1123,
+      "name": "Ordinary Sand",
+      "nameChinese": "普通的沙子",
+      "colorable": false,
+      "image": "item-1123.png",
+      "color": "#ffcf58",
+      "hex": 16764760
+    },
+    {
+      "id": "blk-1124",
+      "itemId": 1124,
+      "name": "Floating Island Sand",
+      "nameChinese": "浮島之砂",
+      "colorable": false,
+      "image": "item-1124.png",
+      "color": "#e8d998",
+      "hex": 15260056
+    },
+    {
+      "id": "blk-1125",
+      "itemId": 1125,
+      "name": "Rough Sandy Beach",
+      "nameChinese": "粗糙沙灘",
+      "colorable": false,
+      "image": "item-1125.png",
+      "color": "#f3d592",
+      "hex": 15979922
+    },
+    {
+      "id": "blk-1126",
+      "itemId": 1126,
+      "name": "Floating Island Sandstone",
+      "nameChinese": "浮島砂岩",
+      "colorable": false,
+      "image": "item-1126.png",
+      "color": "#e5d29a",
+      "hex": 15061658
+    },
+    {
+      "id": "blk-1127",
+      "itemId": 1127,
+      "name": "Clay",
+      "nameChinese": "黏土",
+      "colorable": false,
+      "image": "item-1127.png",
+      "color": "#eec78f",
+      "hex": 15648655
+    },
+    {
+      "id": "blk-1128",
+      "itemId": 1128,
+      "name": "Cave Rock",
+      "nameChinese": "洞窟岩石",
+      "colorable": false,
+      "image": "item-1128.png",
+      "color": "#9296ac",
+      "hex": 9606828
+    },
+    {
+      "id": "blk-1129",
+      "itemId": 1129,
+      "name": "Seaside Lawn",
+      "nameChinese": "海岸草地",
+      "colorable": false,
+      "image": "item-1129.png",
+      "color": "#ead178",
+      "hex": 15389048
+    },
+    {
+      "id": "blk-1130",
+      "itemId": 1130,
+      "name": "Mountain Grass",
+      "nameChinese": "山岳草坪",
+      "colorable": false,
+      "image": "item-1130.png",
+      "color": "#ca9057",
+      "hex": 13275223
+    },
+    {
+      "id": "blk-1131",
+      "itemId": 1131,
+      "name": "Sky Grass",
+      "nameChinese": "天空草坪",
+      "colorable": false,
+      "image": "item-1131.png",
+      "color": "#ece4b5",
+      "hex": 15525045
+    },
+    {
+      "id": "blk-1132",
+      "itemId": 1132,
+      "name": "Pure White Soil",
+      "nameChinese": "純白土",
+      "colorable": false,
+      "image": "item-1132.png",
+      "color": "#ede5b7",
+      "hex": 15590839
+    },
+    {
+      "id": "blk-1133",
+      "itemId": 1133,
+      "name": "Shell Soil",
+      "nameChinese": "貝殼土",
+      "colorable": false,
+      "image": "item-1133.png",
+      "color": "#ecd378",
+      "hex": 15520632
+    },
+    {
+      "id": "blk-1147",
+      "itemId": 1147,
+      "name": "Gravel",
+      "nameChinese": "碎石",
+      "colorable": false,
+      "image": "item-1147.png",
+      "color": "#b6b0ab",
+      "hex": 11972779
+    },
+    {
+      "id": "blk-1149",
+      "itemId": 1149,
+      "name": "Gold Ore",
+      "nameChinese": "金礦石",
+      "colorable": false,
+      "image": "item-1149.png",
+      "color": "#30100c",
+      "hex": 3149836
+    },
+    {
+      "id": "blk-1150",
+      "itemId": 1150,
+      "name": "Pokemetal Ore",
+      "nameChinese": "寶可金屬礦石",
+      "colorable": false,
+      "image": "item-1150.png",
+      "color": "#d2d4cd",
+      "hex": 13817037
+    },
+    {
+      "id": "blk-1152",
+      "itemId": 1152,
+      "name": "Copper Ore (Withered)",
+      "nameChinese": "銅礦石（乾巴巴）",
+      "colorable": false,
+      "image": "item-1152.png",
+      "color": "#fdd28f",
+      "hex": 16634511
+    },
+    {
+      "id": "blk-1153",
+      "itemId": 1153,
+      "name": "Copper Ore (Bleak)",
+      "nameChinese": "銅礦石（暗沉沉）",
+      "colorable": false,
+      "image": "item-1153.png",
+      "color": "#ebd68e",
+      "hex": 15455886
+    },
+    {
+      "id": "blk-1154",
+      "itemId": 1154,
+      "name": "Copper Ore (Rocky)",
+      "nameChinese": "銅礦石（凸隆隆）",
+      "colorable": false,
+      "image": "item-1154.png",
+      "color": "#b48656",
+      "hex": 11830870
+    },
+    {
+      "id": "blk-1155",
+      "itemId": 1155,
+      "name": "Copper Ore (Sparkling)",
+      "nameChinese": "銅礦石（閃閃）",
+      "colorable": false,
+      "image": "item-1155.png",
+      "color": "#e6d8b5",
+      "hex": 15128757
+    },
+    {
+      "id": "blk-1156",
+      "itemId": 1156,
+      "name": "Sea Rock",
+      "nameChinese": "海邊岩石",
+      "colorable": false,
+      "image": "item-1156.png",
+      "color": "#766a70",
+      "hex": 7760496
+    },
+    {
+      "id": "blk-1157",
+      "itemId": 1157,
+      "name": "Reddish Cave Rock",
+      "nameChinese": "紅褐色洞窟岩石",
+      "colorable": false,
+      "image": "item-1157.png",
+      "color": "#84594a",
+      "hex": 8673610
+    },
+    {
+      "id": "blk-1158",
+      "itemId": 1158,
+      "name": "Volcanic Rock",
+      "nameChinese": "火山岩",
+      "colorable": false,
+      "image": "item-1158.png",
+      "color": "#84594a",
+      "hex": 8673610
+    },
+    {
+      "id": "blk-1202",
+      "itemId": 1202,
+      "name": "Black Rock",
+      "nameChinese": "黑色岩石",
+      "colorable": false,
+      "image": "item-1202.png",
+      "color": "#30160d",
+      "hex": 3151373
+    },
+    {
+      "id": "blk-1203",
+      "itemId": 1203,
+      "name": "Iron Ore",
+      "nameChinese": "鐵礦石",
+      "colorable": false,
+      "image": "item-1203.png",
+      "color": "#6d332c",
+      "hex": 7156524
+    },
+    {
+      "id": "blk-1204",
+      "itemId": 1204,
+      "name": "Mossy Soil",
+      "nameChinese": "苔蘚土",
+      "colorable": false,
+      "image": "item-1204.png",
+      "color": "#a9b12f",
+      "hex": 11120943
+    },
+    {
+      "id": "blk-1280",
+      "itemId": 1280,
+      "name": "Ditto Pattern",
+      "nameChinese": "百變怪滿滿花紋",
+      "colorable": false,
+      "image": "item-1280.png",
+      "color": "#d1ed92",
+      "hex": 13757842
+    }
+  ]
+}

@@ -188,11 +188,18 @@ const useBlueprintStore = create((set, get) => ({
   // ── Export JSON (format unchanged, version 1) ─
   exportJSON: () => {
     const { layers } = get();
+    // Only list materials actually used in the blueprint
+    const usedIds = new Set();
+    Object.values(layers).forEach((l) => Object.values(l).forEach((id) => usedIds.add(id)));
     const data = {
       version: 1,
       grid: GRID,
       maxLayers: MAX_LAYERS,
-      materials: MATERIALS.map((m) => ({ id: m.id, name: m.name, color: m.color })),
+      materials: MATERIALS.filter((m) => usedIds.has(m.id)).map((m) => ({
+        id: m.id,
+        name: m.name,
+        color: m.color,
+      })),
       layers: Object.fromEntries(
         Object.entries(layers).filter(([, v]) => Object.keys(v).length > 0)
       ),

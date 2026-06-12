@@ -1,9 +1,10 @@
 import React, { useRef, useEffect, useCallback, useState } from 'react';
 import useBlueprintStore from '../store/useBlueprintStore';
-import { MATERIALS, GRID } from '../constants/materials';
+import { MATERIAL_MAP, GRID } from '../constants/materials';
 
-const COLOR_MAP = new Map(MATERIALS.map((m) => [m.id, m.color]));
 const CURSORS = { paint: 'crosshair', erase: 'cell', fill: 'pointer' };
+// Cells at or above this size render the block thumbnail instead of a flat color
+const IMAGE_CELL_SIZE = 12;
 
 // Canvas palette (bright theme)
 const C_OUTSIDE = '#ede4d3';
@@ -53,8 +54,11 @@ export default function Editor2D() {
   const [cellSizeDisplay, setCellSizeDisplay] = useState(6);
   const tool = useBlueprintStore((s) => s.tool);
 
+  // Lazily loaded block thumbnails (id → { img, loaded })
+  const imagesRef = useRef(new Map());
+
   // ── Redraw (reads the store imperatively; never re-renders React) ──
-  const draw = useCallback(() => {
+  const draw = useCallback(function drawCanvas() {
     const canvas = canvasRef.current;
     if (!canvas) return;
     const ctx = canvas.getContext('2d');
@@ -80,13 +84,34 @@ export default function Editor2D() {
     const endX = Math.min(GRID, Math.ceil((viewX + W) / cellSize));
     const endZ = Math.min(GRID, Math.ceil((viewY + H) / cellSize));
 
-    // Blocks
+    // Blocks: thumbnail when zoomed in, dominant color otherwise
+    const getImage = (mat) => {
+      let entry = imagesRef.current.get(mat.id);
+      if (!entry) {
+        entry = { img: new Image(), loaded: false };
+        entry.img.onload = () => {
+          entry.loaded = true;
+          requestAnimationFrame(drawCanvas);
+        };
+        entry.img.src = mat.image;
+        imagesRef.current.set(mat.id, entry);
+      }
+      return entry;
+    };
+
     for (let x = startX; x < endX; x++) {
       for (let z = startZ; z < endZ; z++) {
         const matId = layer[`${x},${z}`];
         if (!matId) continue;
-        ctx.fillStyle = COLOR_MAP.get(matId) ?? '#888';
-        ctx.fillRect(x * cellSize - viewX, z * cellSize - viewY, cellSize, cellSize);
+        const mat = MATERIAL_MAP.get(matId);
+        const sx = x * cellSize - viewX;
+        const sy = z * cellSize - viewY;
+        ctx.fillStyle = mat?.color ?? '#888';
+        ctx.fillRect(sx, sy, cellSize, cellSize);
+        if (mat?.image && cellSize >= IMAGE_CELL_SIZE) {
+          const entry = getImage(mat);
+          if (entry.loaded) ctx.drawImage(entry.img, sx, sy, cellSize, cellSize);
+        }
       }
     }
 
