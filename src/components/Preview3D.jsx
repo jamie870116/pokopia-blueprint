@@ -1,62 +1,83 @@
-import React, { useRef, useEffect } from 'react';
+import React, { useRef, useEffect, useMemo, useState } from 'react';
 import { Canvas, useThree, useFrame } from '@react-three/fiber';
 import { OrbitControls, Grid } from '@react-three/drei';
 import * as THREE from 'three';
 import useBlueprintStore from '../store/useBlueprintStore';
-import { MATERIALS, GRID, MAX_LAYERS } from '../constants/materials';
+import { MATERIALS, GRID } from '../constants/materials';
 
-const INIT_POS    = [GRID * 0.8, GRID * 0.6, GRID * 0.8];
+const INIT_POS = [GRID * 0.8, GRID * 0.6, GRID * 0.8];
 const INIT_TARGET = [GRID / 2, 5, GRID / 2];
-const MIN_DIST    = 8;
-const MAX_DIST    = 380;
+const MIN_DIST = 8;
+const MAX_DIST = 380;
+const MIN_CAPACITY = 4096;
 
-// ── 每種材質一個 InstancedMesh ─────────────────
-function MaterialInstances({ matDef }) {
+const HEX_MAP = new Map(MATERIALS.map((m) => [m.id, m.hex]));
+
+// ── All blocks in one InstancedMesh (per-instance color) ──
+// Only the blocks that actually exist are written — a few thousand matrix
+// writes per edit instead of the old 7 × 200,000 hidden-matrix loop.
+function Blocks() {
   const meshRef = useRef();
-  const { layers, displayUpToLayer } = useBlueprintStore();
-  const maxCount = GRID * GRID * MAX_LAYERS;
+  const layers = useBlueprintStore((s) => s.layers);
+  const displayUpToLayer = useBlueprintStore((s) => s.displayUpToLayer);
 
-  useEffect(() => {
-    if (!meshRef.current) return;
-    const mesh   = meshRef.current;
-    const dummy  = new THREE.Object3D();
-    const hidden = new THREE.Matrix4().makeScale(0, 0, 0);
-
-    for (let i = 0; i < maxCount; i++) mesh.setMatrixAt(i, hidden);
-
-    let idx = 0;
+  const blocks = useMemo(() => {
+    const list = [];
     Object.entries(layers).forEach(([y, cells]) => {
       const yNum = parseInt(y);
       if (yNum > displayUpToLayer) return;
       Object.entries(cells).forEach(([ck, matId]) => {
-        if (matId !== matDef.id) return;
         const [x, z] = ck.split(',').map(Number);
-        dummy.position.set(x + 0.5, yNum - 0.5, z + 0.5);
-        dummy.scale.setScalar(1);
-        dummy.updateMatrix();
-        mesh.setMatrixAt(idx++, dummy.matrix);
+        list.push({ x, y: yNum, z, matId });
       });
     });
+    return list;
+  }, [layers, displayUpToLayer]);
 
-    mesh.count = idx;
+  // High-water-mark capacity: only grows (powers of two) so the mesh is rarely recreated
+  const [capacity, setCapacity] = useState(MIN_CAPACITY);
+  if (blocks.length > capacity) {
+    setCapacity(2 ** Math.ceil(Math.log2(blocks.length)));
+  }
+
+  useEffect(() => {
+    const mesh = meshRef.current;
+    if (!mesh) return;
+    const dummy = new THREE.Object3D();
+    const color = new THREE.Color();
+    blocks.forEach((b, i) => {
+      dummy.position.set(b.x + 0.5, b.y - 0.5, b.z + 0.5);
+      dummy.updateMatrix();
+      mesh.setMatrixAt(i, dummy.matrix);
+      mesh.setColorAt(i, color.setHex(HEX_MAP.get(b.matId) ?? 0x888888));
+    });
+    mesh.count = blocks.length;
     mesh.instanceMatrix.needsUpdate = true;
-  }, [layers, displayUpToLayer, matDef.id, maxCount]);
+    if (mesh.instanceColor) mesh.instanceColor.needsUpdate = true;
+  }, [blocks, capacity]);
 
   return (
-    <instancedMesh ref={meshRef} args={[null, null, maxCount]} castShadow receiveShadow>
+    <instancedMesh
+      key={capacity}
+      ref={meshRef}
+      args={[null, null, capacity]}
+      frustumCulled={false}
+      castShadow
+      receiveShadow
+    >
       <boxGeometry args={[1, 1, 1]} />
-      <meshLambertMaterial color={matDef.hex} />
+      <meshLambertMaterial color="#ffffff" />
     </instancedMesh>
   );
 }
 
-// ── 攝影機控制器 ───────────────────────────────
+// ── Camera controller (zoom / reset buttons) ───
 function CameraController({ actionRef }) {
   const { camera } = useThree();
   const controlsRef = useRef(null);
-  const targetRef   = useRef(new THREE.Vector3(...INIT_TARGET));
+  const targetRef = useRef(new THREE.Vector3(...INIT_TARGET));
 
-  // 每幀確保攝影機距離在安全範圍內
+  // Keep the camera distance inside a safe range every frame
   useFrame(() => {
     const dist = camera.position.distanceTo(targetRef.current);
     if (dist < MIN_DIST || dist > MAX_DIST) {
@@ -66,18 +87,15 @@ function CameraController({ actionRef }) {
     }
   });
 
-  // 把操作函式暴露給外層按鈕
+  // Expose actions to the buttons outside the canvas
   useEffect(() => {
     actionRef.current = {
       zoom: (factor) => {
         const target = targetRef.current.clone();
-        const dir    = camera.position.clone().sub(target);
-        const cur    = dir.length();
-        const next   = Math.max(MIN_DIST, Math.min(MAX_DIST, cur * factor));
+        const dir = camera.position.clone().sub(target);
+        const next = Math.max(MIN_DIST, Math.min(MAX_DIST, dir.length() * factor));
         dir.setLength(next);
         camera.position.copy(target.clone().add(dir));
-
-        // 同步給 OrbitControls
         if (controlsRef.current) {
           controlsRef.current.target.copy(targetRef.current);
           controlsRef.current.update();
@@ -91,12 +109,10 @@ function CameraController({ actionRef }) {
           controlsRef.current.update();
         }
       },
-      // OrbitControls 掛載後注入 ref
       setControls: (ctrl) => {
         controlsRef.current = ctrl;
         if (ctrl) {
           ctrl.target.copy(targetRef.current);
-          // 監聽 OrbitControls 的 target 變化，同步到 targetRef
           ctrl.addEventListener('change', () => {
             targetRef.current.copy(ctrl.target);
           });
@@ -108,7 +124,6 @@ function CameraController({ actionRef }) {
   return null;
 }
 
-// ── OrbitControls wrapper（掛載後回報給 CameraController）
 function Controls({ actionRef }) {
   const { camera, gl } = useThree();
   const ref = useRef();
@@ -123,41 +138,56 @@ function Controls({ actionRef }) {
       args={[camera, gl.domElement]}
       makeDefault
       enableZoom={false}
-      enableDamping={false}
+      enableDamping
+      dampingFactor={0.12}
       maxPolarAngle={Math.PI / 2 - 0.02}
       mouseButtons={{
-        LEFT:   THREE.MOUSE.ROTATE,
+        LEFT: THREE.MOUSE.ROTATE,
         MIDDLE: THREE.MOUSE.DOLLY,
-        RIGHT:  THREE.MOUSE.PAN,
+        RIGHT: THREE.MOUSE.PAN,
       }}
     />
   );
 }
 
-// ── 場景內容 ───────────────────────────────────
+// ── Scene ──────────────────────────────────────
 function SceneContent({ actionRef }) {
   return (
     <>
-      <ambientLight intensity={0.55} />
-      <directionalLight position={[60, 100, 40]} intensity={0.85} castShadow />
-      <directionalLight position={[-40, 20, -60]} intensity={0.25} color="#8ab4f8" />
+      <hemisphereLight args={['#ffffff', '#cde3b6', 0.7]} />
+      <directionalLight
+        position={[60, 100, 40]}
+        intensity={1.1}
+        color="#fff6e0"
+        castShadow
+        shadow-mapSize={[1024, 1024]}
+        shadow-camera-left={-70}
+        shadow-camera-right={70}
+        shadow-camera-top={70}
+        shadow-camera-bottom={-70}
+        shadow-camera-far={250}
+      />
+
+      {/* Ground */}
+      <mesh position={[GRID / 2, -0.02, GRID / 2]} rotation={[-Math.PI / 2, 0, 0]} receiveShadow>
+        <planeGeometry args={[GRID, GRID]} />
+        <meshLambertMaterial color="#dcedc8" />
+      </mesh>
 
       <Grid
-        position={[GRID / 2, 0, GRID / 2]}
+        position={[GRID / 2, 0.01, GRID / 2]}
         args={[GRID, GRID]}
         cellSize={1}
         cellThickness={0.3}
-        cellColor="#1e2a3a"
+        cellColor="#aac896"
         sectionSize={10}
-        sectionThickness={0.5}
-        sectionColor="#2a3f55"
-        fadeDistance={180}
+        sectionThickness={0.7}
+        sectionColor="#86ab6e"
+        fadeDistance={220}
         infiniteGrid={false}
       />
 
-      {MATERIALS.map((m) => (
-        <MaterialInstances key={m.id} matDef={m} />
-      ))}
+      <Blocks />
 
       <Controls actionRef={actionRef} />
       <CameraController actionRef={actionRef} />
@@ -165,30 +195,30 @@ function SceneContent({ actionRef }) {
   );
 }
 
-// ── 外層元件 ───────────────────────────────────
 export default function Preview3D() {
   const actionRef = useRef({});
 
   return (
-    <div className="panel right-panel">
-      <div className="panel-info">
-        3D 預覽 ｜ 左鍵旋轉 · 右鍵平移
-      </div>
-
-      <div className="zoom-bar">
-        <button className="zoom-btn" onClick={() => actionRef.current.zoom?.(1.4)}>−</button>
-        <button className="zoom-btn zoom-reset" onClick={() => actionRef.current.reset?.()}>重設</button>
-        <button className="zoom-btn" onClick={() => actionRef.current.zoom?.(1 / 1.4)}>+</button>
+    <div className="panel">
+      <div className="panel-head">
+        <span className="panel-title">3D 預覽</span>
+        <span className="panel-hint">左鍵旋轉 · 右鍵平移</span>
+        <div className="zoom-bar">
+          <button className="zoom-btn" onClick={() => actionRef.current.zoom?.(1.4)} title="縮小">−</button>
+          <button className="zoom-btn zoom-reset" onClick={() => actionRef.current.reset?.()}>重設</button>
+          <button className="zoom-btn" onClick={() => actionRef.current.zoom?.(1 / 1.4)} title="放大">+</button>
+        </div>
       </div>
 
       <div className="canvas-wrap">
         <Canvas
+          shadows
           style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }}
           camera={{ position: INIT_POS, fov: 45, near: 0.1, far: 600 }}
           gl={{ antialias: true }}
         >
-          <color attach="background" args={['#090d12']} />
-          <fog attach="fog" args={['#090d12', 150, 400]} />
+          <color attach="background" args={['#cfe8f7']} />
+          <fog attach="fog" args={['#cfe8f7', 180, 450]} />
           <SceneContent actionRef={actionRef} />
         </Canvas>
       </div>

@@ -45,13 +45,14 @@ function TagRow({ label, items, selected, onToggle, defaultOpen = false, getItem
 export default function PokedexList() {
   const navigate = useNavigate();
 
-  const [search,   setSearch]   = useState('');
-  const [types,    setTypes]    = useState(new Set());
-  const [specs,    setSpecs]    = useState(new Set());
-  const [favs,     setFavs]     = useState(new Set());
-  const [envs,     setEnvs]     = useState(new Set());
-  const [zone,     setZone]     = useState('全部');
-  const [page,     setPage]     = useState(1);
+  const [search,     setSearch]     = useState('');
+  const [types,      setTypes]      = useState(new Set());
+  const [specs,      setSpecs]      = useState(new Set());
+  const [favs,       setFavs]       = useState(new Set());
+  const [envs,       setEnvs]       = useState(new Set());
+  const [zone,       setZone]       = useState('全部');
+  const [page,       setPage]       = useState(1);
+  const [filterOpen, setFilterOpen] = useState(true);
 
   const toggle = (setter) => (val) =>
     setter((prev) => {
@@ -92,7 +93,9 @@ export default function PokedexList() {
     loaderRef.current.observe(node);
   }, [hasMore]);
 
-  const hasFilter = search || types.size || specs.size || favs.size || envs.size || zone !== '全部';
+  const hasFilter   = search || types.size || specs.size || favs.size || envs.size || zone !== '全部';
+  const filterCount =
+    (search ? 1 : 0) + types.size + specs.size + favs.size + envs.size + (zone !== '全部' ? 1 : 0);
   const clearAll  = () => {
     setSearch(''); setTypes(new Set()); setSpecs(new Set());
     setFavs(new Set()); setEnvs(new Set()); setZone('全部'); setPage(1);
@@ -103,11 +106,21 @@ export default function PokedexList() {
       <header className="pdx-header">
         <button className="pdx-back" onClick={() => navigate('/')}>← 首頁</button>
         <h1 className="pdx-title">寶可夢圖鑑</h1>
+        <button
+          className={`pdx-filter-toggle ${filterOpen ? 'pdx-filter-toggle--open' : ''}`}
+          onClick={() => setFilterOpen((o) => !o)}
+        >
+          🔍 篩選
+          {!filterOpen && filterCount > 0 && (
+            <span className="pdx-filter-badge">{filterCount}</span>
+          )}
+          <span className="pdx-filter-chevron">{filterOpen ? '∧' : '∨'}</span>
+        </button>
         <span className="pdx-count">{filtered.length} / {ALL_POKEMON.length}</span>
       </header>
 
-      {/* ── 篩選面板 ── */}
-      <div className="pdx-filter-panel">
+      {/* ── 篩選面板（可收合） ── */}
+      <div className={`pdx-filter-panel ${filterOpen ? '' : 'pdx-filter-panel--closed'}`}>
         <TagRow label="按類型瀏覽" items={ALL_TYPES} selected={types} onToggle={toggle(setTypes)} defaultOpen getItemClass={(t) => `pdx-type--${t}`} />
         <TagRow label="按特長瀏覽" items={ALL_SPECS}  selected={specs} onToggle={toggle(setSpecs)} />
         <TagRow label="按喜好瀏覽" items={ALL_FAVS}   selected={favs}  onToggle={toggle(setFavs)} />

@@ -2,54 +2,42 @@ import React, { useRef, useEffect, useCallback, useState } from 'react';
 import useBlueprintStore from '../store/useBlueprintStore';
 import { MATERIALS, GRID } from '../constants/materials';
 
-// ── 素材統計區塊 ────────────────────────────────
-function MaterialStats() {
-  const { layers } = useBlueprintStore();
+const COLOR_MAP = new Map(MATERIALS.map((m) => [m.id, m.color]));
+const CURSORS = { paint: 'crosshair', erase: 'cell', fill: 'pointer' };
 
-  const stats = MATERIALS.map((mat) => {
-    let count = 0;
-    Object.values(layers).forEach((layer) => {
-      Object.values(layer).forEach((matId) => {
-        if (matId === mat.id) count++;
-      });
-    });
-    return { ...mat, count };
-  }).filter((m) => m.count > 0);
+// Canvas palette (bright theme)
+const C_OUTSIDE = '#ede4d3';
+const C_MAP_BG = '#fffdf6';
+const C_GRID = 'rgba(106, 138, 74, 0.14)';
+const C_GRID_SECTION = 'rgba(106, 138, 74, 0.32)';
+const C_BORDER = '#6aa84f';
+const C_HOVER = 'rgba(106, 168, 79, 0.85)';
 
-  const total = stats.reduce((n, m) => n + m.count, 0);
-
-  return (
-    <div className="stats-panel">
-      <div className="stats-title">素材統計</div>
-      {stats.length === 0 ? (
-        <div className="stats-empty">尚未放置任何方塊</div>
-      ) : (
-        <>
-          {stats.map((m) => (
-            <div key={m.id} className="stats-row">
-              <span className="stats-dot" style={{ background: m.color }} />
-              <span className="stats-name">{m.name}</span>
-              <span className="stats-bar-wrap">
-                <span
-                  className="stats-bar"
-                  style={{ width: `${(m.count / total) * 100}%`, background: m.color }}
-                />
-              </span>
-              <span className="stats-count">{m.count}</span>
-            </div>
-          ))}
-          <div className="stats-total">合計：{total} 格</div>
-        </>
-      )}
-    </div>
-  );
+// All grid cells on the line between two cells (Bresenham), clamped to the map.
+function lineCells(x0, z0, x1, z1) {
+  const cells = [];
+  const dx = Math.abs(x1 - x0);
+  const dz = Math.abs(z1 - z0);
+  const sx = x0 < x1 ? 1 : -1;
+  const sz = z0 < z1 ? 1 : -1;
+  let err = dx - dz;
+  let x = x0;
+  let z = z0;
+  for (;;) {
+    if (x >= 0 && x < GRID && z >= 0 && z < GRID) cells.push(`${x},${z}`);
+    if (x === x1 && z === z1) break;
+    const e2 = 2 * err;
+    if (e2 > -dz) { err -= dz; x += sx; }
+    if (e2 < dx) { err += dx; z += sz; }
+  }
+  return cells;
 }
 
-// ── 2D 編輯器主體 ───────────────────────────────
 export default function Editor2D() {
   const canvasRef = useRef(null);
-  const wrapRef   = useRef(null);
-  const stateRef  = useRef({
+  const wrapRef = useRef(null);
+  const chipRef = useRef(null);
+  const stateRef = useRef({
     cellSize: 6,
     viewX: 0,
     viewY: 0,
@@ -57,75 +45,130 @@ export default function Editor2D() {
     isPanning: false,
     panStart: null,
     panOrigin: null,
+    lastCell: null,
+    hover: null,
+    rafPending: false,
   });
 
   const [cellSizeDisplay, setCellSizeDisplay] = useState(6);
-  const { getLayer, paintCell, currentLayer, eraseMode } = useBlueprintStore();
+  const tool = useBlueprintStore((s) => s.tool);
 
-  // ── 重繪 ──────────────────────────────────────
+  // ── Redraw (reads the store imperatively; never re-renders React) ──
   const draw = useCallback(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
     const ctx = canvas.getContext('2d');
-    const { cellSize, viewX, viewY } = stateRef.current;
-    const W = canvas.width, H = canvas.height;
+    const { cellSize, viewX, viewY, hover } = stateRef.current;
+    const W = canvas.width;
+    const H = canvas.height;
+    const { layers, currentLayer } = useBlueprintStore.getState();
+    const layer = layers[currentLayer] ?? {};
 
     ctx.clearRect(0, 0, W, H);
-    ctx.fillStyle = '#090d12';
+    ctx.fillStyle = C_OUTSIDE;
     ctx.fillRect(0, 0, W, H);
 
-    const layer  = getLayer(currentLayer);
+    // Map area background
+    const mapX = -viewX;
+    const mapY = -viewY;
+    const mapSize = GRID * cellSize;
+    ctx.fillStyle = C_MAP_BG;
+    ctx.fillRect(mapX, mapY, mapSize, mapSize);
+
     const startX = Math.max(0, Math.floor(viewX / cellSize));
     const startZ = Math.max(0, Math.floor(viewY / cellSize));
-    const endX   = Math.min(GRID, Math.ceil((viewX + W) / cellSize));
-    const endZ   = Math.min(GRID, Math.ceil((viewY + H) / cellSize));
+    const endX = Math.min(GRID, Math.ceil((viewX + W) / cellSize));
+    const endZ = Math.min(GRID, Math.ceil((viewY + H) / cellSize));
 
+    // Blocks
     for (let x = startX; x < endX; x++) {
       for (let z = startZ; z < endZ; z++) {
-        const sx    = x * cellSize - viewX;
-        const sy    = z * cellSize - viewY;
         const matId = layer[`${x},${z}`];
-
-        if (matId) {
-          const mat = MATERIALS.find((m) => m.id === matId);
-          ctx.fillStyle = mat?.color ?? '#888';
-          ctx.fillRect(sx, sy, cellSize, cellSize);
-        }
-        if (cellSize >= 4) {
-          ctx.strokeStyle = 'rgba(255,255,255,0.06)';
-          ctx.lineWidth = 0.5;
-          ctx.strokeRect(sx, sy, cellSize, cellSize);
-        }
+        if (!matId) continue;
+        ctx.fillStyle = COLOR_MAP.get(matId) ?? '#888';
+        ctx.fillRect(x * cellSize - viewX, z * cellSize - viewY, cellSize, cellSize);
       }
     }
 
-    // 地圖邊框
-    ctx.strokeStyle = 'rgba(88,166,255,0.4)';
-    ctx.lineWidth = 1.5;
-    ctx.strokeRect(-viewX, -viewY, GRID * cellSize, GRID * cellSize);
-  }, [currentLayer, getLayer]);
+    // Grid lines (minor lines hidden when zoomed far out)
+    ctx.lineWidth = 1;
+    for (let x = startX; x <= endX; x++) {
+      const section = x % 10 === 0;
+      if (!section && cellSize < 4) continue;
+      ctx.strokeStyle = section ? C_GRID_SECTION : C_GRID;
+      const sx = Math.round(x * cellSize - viewX) + 0.5;
+      ctx.beginPath();
+      ctx.moveTo(sx, Math.max(0, mapY));
+      ctx.lineTo(sx, Math.min(H, mapY + mapSize));
+      ctx.stroke();
+    }
+    for (let z = startZ; z <= endZ; z++) {
+      const section = z % 10 === 0;
+      if (!section && cellSize < 4) continue;
+      ctx.strokeStyle = section ? C_GRID_SECTION : C_GRID;
+      const sy = Math.round(z * cellSize - viewY) + 0.5;
+      ctx.beginPath();
+      ctx.moveTo(Math.max(0, mapX), sy);
+      ctx.lineTo(Math.min(W, mapX + mapSize), sy);
+      ctx.stroke();
+    }
 
-  useEffect(() => { draw(); }, [draw, currentLayer]);
-  useEffect(() => useBlueprintStore.subscribe(draw), [draw]);
+    // Map border
+    ctx.strokeStyle = C_BORDER;
+    ctx.lineWidth = 2;
+    ctx.strokeRect(mapX, mapY, mapSize, mapSize);
+
+    // Hover highlight
+    if (hover) {
+      const hx = hover.gx * cellSize - viewX;
+      const hy = hover.gz * cellSize - viewY;
+      ctx.fillStyle = 'rgba(106, 168, 79, 0.15)';
+      ctx.fillRect(hx, hy, cellSize, cellSize);
+      ctx.strokeStyle = C_HOVER;
+      ctx.lineWidth = 2;
+      ctx.strokeRect(hx + 1, hy + 1, cellSize - 2, cellSize - 2);
+    }
+  }, []);
+
+  // At most one real redraw per animation frame
+  const requestDraw = useCallback(() => {
+    const s = stateRef.current;
+    if (s.rafPending) return;
+    s.rafPending = true;
+    requestAnimationFrame(() => {
+      s.rafPending = false;
+      draw();
+    });
+  }, [draw]);
+
+  // Redraw when blocks or the edited floor change
+  useEffect(
+    () =>
+      useBlueprintStore.subscribe((state, prev) => {
+        if (state.layers !== prev.layers || state.currentLayer !== prev.currentLayer) {
+          requestDraw();
+        }
+      }),
+    [requestDraw]
+  );
 
   // ── Resize ────────────────────────────────────
   useEffect(() => {
     const wrap = wrapRef.current;
     const canvas = canvasRef.current;
     if (!wrap || !canvas) return;
-    const ro = new ResizeObserver(() => {
-      canvas.width  = wrap.clientWidth;
+    const resize = () => {
+      canvas.width = wrap.clientWidth;
       canvas.height = wrap.clientHeight;
       draw();
-    });
+    };
+    const ro = new ResizeObserver(resize);
     ro.observe(wrap);
-    canvas.width  = wrap.clientWidth;
-    canvas.height = wrap.clientHeight;
-    draw();
+    resize();
     return () => ro.disconnect();
   }, [draw]);
 
-  // ── 輔助 ──────────────────────────────────────
+  // ── Helpers ───────────────────────────────────
   const screenToGrid = (sx, sy) => {
     const { cellSize, viewX, viewY } = stateRef.current;
     return {
@@ -134,134 +177,176 @@ export default function Editor2D() {
     };
   };
 
+  const inBounds = ({ gx, gz }) => gx >= 0 && gx < GRID && gz >= 0 && gz < GRID;
+
   const clampView = (canvas) => {
     const s = stateRef.current;
-    s.viewX = Math.max(-canvas.width  * 0.5, Math.min(GRID * s.cellSize - canvas.width  * 0.1, s.viewX));
+    s.viewX = Math.max(-canvas.width * 0.5, Math.min(GRID * s.cellSize - canvas.width * 0.1, s.viewX));
     s.viewY = Math.max(-canvas.height * 0.5, Math.min(GRID * s.cellSize - canvas.height * 0.1, s.viewY));
   };
 
-  // ── 縮放按鈕 ─────────────────────────────────
-  const zoomBy = (factor) => {
+  const setHover = (cell) => {
+    stateRef.current.hover = cell;
+    const chip = chipRef.current;
+    if (chip) {
+      chip.style.display = cell ? 'block' : 'none';
+      if (cell) chip.textContent = `(${cell.gx}, ${cell.gz})`;
+    }
+    requestDraw();
+  };
+
+  // ── Zoom (keeps the given screen point fixed) ─
+  const zoomAt = (sx, sy, factor) => {
     const canvas = canvasRef.current;
     if (!canvas) return;
     const s = stateRef.current;
-    const cx = canvas.width  / 2;
-    const cy = canvas.height / 2;
-    const gxBefore = (cx + s.viewX) / s.cellSize;
-    const gzBefore = (cy + s.viewY) / s.cellSize;
+    const gxBefore = (sx + s.viewX) / s.cellSize;
+    const gzBefore = (sy + s.viewY) / s.cellSize;
     s.cellSize = Math.max(2, Math.min(40, s.cellSize * factor));
-    s.viewX = gxBefore * s.cellSize - cx;
-    s.viewY = gzBefore * s.cellSize - cy;
+    s.viewX = gxBefore * s.cellSize - sx;
+    s.viewY = gzBefore * s.cellSize - sy;
     clampView(canvas);
     setCellSizeDisplay(Math.round(s.cellSize));
-    draw();
+    requestDraw();
   };
 
-  const zoomIn    = () => zoomBy(1.3);
-  const zoomOut   = () => zoomBy(1 / 1.3);
-  const zoomReset = () => {
+  const zoomCenter = (factor) => {
     const canvas = canvasRef.current;
-    if (!canvas) return;
+    if (canvas) zoomAt(canvas.width / 2, canvas.height / 2, factor);
+  };
+
+  const zoomReset = () => {
     const s = stateRef.current;
     s.cellSize = 6;
     s.viewX = 0;
     s.viewY = 0;
     setCellSizeDisplay(6);
-    draw();
+    requestDraw();
   };
 
-  // ── Mouse 事件 ────────────────────────────────
-  const handleMouseDown = (e) => {
+  // ── Pointer events ────────────────────────────
+  const handlePointerDown = (e) => {
     const canvas = canvasRef.current;
     const s = stateRef.current;
+    canvas.setPointerCapture(e.pointerId);
+
     if (e.button === 1 || e.button === 2) {
       s.isPanning = true;
-      s.panStart  = { x: e.clientX, y: e.clientY };
+      s.panStart = { x: e.clientX, y: e.clientY };
       s.panOrigin = { x: s.viewX, y: s.viewY };
       canvas.style.cursor = 'grabbing';
       return;
     }
-    s.isDrawing = true;
+
     const r = canvas.getBoundingClientRect();
-    const { gx, gz } = screenToGrid(e.clientX - r.left, e.clientY - r.top);
-    if (gx >= 0 && gx < GRID && gz >= 0 && gz < GRID) paintCell(gx, gz);
+    const cell = screenToGrid(e.clientX - r.left, e.clientY - r.top);
+    if (!inBounds(cell)) return;
+
+    const store = useBlueprintStore.getState();
+    if (store.tool === 'fill') {
+      store.floodFill(cell.gx, cell.gz);
+      return;
+    }
+
+    s.isDrawing = true;
+    s.lastCell = cell;
+    store.beginStroke();
+    store.paintCells([`${cell.gx},${cell.gz}`]);
   };
 
-  const handleMouseMove = (e) => {
+  const handlePointerMove = (e) => {
     const canvas = canvasRef.current;
     const s = stateRef.current;
     const r = canvas.getBoundingClientRect();
+    const cell = screenToGrid(e.clientX - r.left, e.clientY - r.top);
+
+    setHover(inBounds(cell) ? cell : null);
+
     if (s.isPanning) {
       s.viewX = s.panOrigin.x - (e.clientX - s.panStart.x);
       s.viewY = s.panOrigin.y - (e.clientY - s.panStart.y);
       clampView(canvas);
-      draw();
+      requestDraw();
       return;
     }
+
     if (s.isDrawing) {
-      const { gx, gz } = screenToGrid(e.clientX - r.left, e.clientY - r.top);
-      if (gx >= 0 && gx < GRID && gz >= 0 && gz < GRID) paintCell(gx, gz);
+      // Interpolate so fast drags leave no gaps
+      const from = s.lastCell ?? cell;
+      const keys = lineCells(from.gx, from.gz, cell.gx, cell.gz);
+      if (keys.length) useBlueprintStore.getState().paintCells(keys);
+      s.lastCell = cell;
     }
   };
 
-  const handleMouseUp = () => {
+  const stopInteraction = () => {
     const s = stateRef.current;
-    s.isDrawing = false;
+    if (s.isDrawing) {
+      s.isDrawing = false;
+      s.lastCell = null;
+      useBlueprintStore.getState().endStroke();
+    }
     if (s.isPanning) {
       s.isPanning = false;
-      canvasRef.current.style.cursor = eraseMode ? 'cell' : 'crosshair';
+      const canvas = canvasRef.current;
+      if (canvas) canvas.style.cursor = CURSORS[useBlueprintStore.getState().tool];
     }
   };
 
-  // ── Touchpad：雙指滑動平移 ────────────────────
+  const handlePointerLeave = () => {
+    if (!stateRef.current.isDrawing && !stateRef.current.isPanning) setHover(null);
+  };
+
+  // ── Trackpad: two-finger pan, pinch to zoom ───
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
     const handleWheel = (e) => {
       e.preventDefault();
       const s = stateRef.current;
+      if (e.ctrlKey) {
+        // Pinch gesture (or ctrl+wheel): zoom toward the cursor
+        const r = canvas.getBoundingClientRect();
+        zoomAt(e.clientX - r.left, e.clientY - r.top, Math.exp(-e.deltaY * 0.01));
+        return;
+      }
       s.viewX += e.deltaX;
       s.viewY += e.deltaY;
       clampView(canvas);
-      draw();
+      requestDraw();
     };
     canvas.addEventListener('wheel', handleWheel, { passive: false });
     return () => canvas.removeEventListener('wheel', handleWheel);
-  }, [draw]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [requestDraw]);
 
   return (
-    <div className="panel left-panel">
-      <div className="panel-info">
-        2D 編輯 100×100 ｜ 左鍵繪製 · 右鍵平移 · 雙指滑動平移
+    <div className="panel">
+      <div className="panel-head">
+        <span className="panel-title">2D 編輯</span>
+        <span className="panel-hint">左鍵繪製 · 右鍵平移 · 雙指平移 · 捏合縮放</span>
+        <div className="zoom-bar">
+          <button className="zoom-btn" onClick={() => zoomCenter(1 / 1.3)} title="縮小">−</button>
+          <button className="zoom-btn zoom-reset" onClick={zoomReset} title="重設縮放">
+            {cellSizeDisplay}px
+          </button>
+          <button className="zoom-btn" onClick={() => zoomCenter(1.3)} title="放大">+</button>
+        </div>
       </div>
 
-      {/* 縮放按鈕列 */}
-      <div className="zoom-bar">
-        <button className="zoom-btn" onClick={zoomOut}>−</button>
-        <button className="zoom-btn zoom-reset" onClick={zoomReset} title="重設縮放">
-          {cellSizeDisplay}px
-        </button>
-        <button className="zoom-btn" onClick={zoomIn}>+</button>
-      </div>
-
-      {/* 格子畫布 */}
       <div ref={wrapRef} className="canvas-wrap">
         <canvas
           ref={canvasRef}
-          style={{
-            position: 'absolute', top: 0, left: 0,
-            cursor: eraseMode ? 'cell' : 'crosshair',
-          }}
-          onMouseDown={handleMouseDown}
-          onMouseMove={handleMouseMove}
-          onMouseUp={handleMouseUp}
-          onMouseLeave={handleMouseUp}
+          style={{ position: 'absolute', top: 0, left: 0, cursor: CURSORS[tool], touchAction: 'none' }}
+          onPointerDown={handlePointerDown}
+          onPointerMove={handlePointerMove}
+          onPointerUp={stopInteraction}
+          onPointerCancel={stopInteraction}
+          onPointerLeave={handlePointerLeave}
           onContextMenu={(e) => e.preventDefault()}
         />
+        <div ref={chipRef} className="coord-chip" style={{ display: 'none' }} />
       </div>
-
-      {/* 素材統計 */}
-      <MaterialStats />
     </div>
   );
 }

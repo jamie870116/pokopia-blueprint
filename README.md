@@ -12,10 +12,14 @@ A web-based grid blueprint tool for planning block-based buildings in Pokopia. D
 
 ## Features
 
-- **2D Grid Editor** — 100×100 grid canvas with button-based zoom and trackpad panning
-- **3D Live Preview** — Real-time isometric 3D view that syncs with every edit
+- **2D Grid Editor** — 100×100 grid canvas with smooth gap-free drag painting, zoom (buttons / pinch), and trackpad panning
+- **3D Live Preview** — Real-time 3D view that syncs with every edit (single instanced mesh, no lag while painting)
 - **Multi-layer Support** — Edit up to 20 floors (Y-axis) independently
 - **Layer-by-layer 3D Display** — Control how many floors are visible in the 3D preview to inspect each level
+- **Paint Bucket** — Flood-fill enclosed regions in one click
+- **Copy / Paste Floors** — Duplicate a whole floor onto another one
+- **Undo / Redo** — One drag stroke = one undo step (`Ctrl+Z` / `Ctrl+Shift+Z`)
+- **Keyboard Shortcuts** — `B` pencil, `E` eraser, `G` bucket, `[` / `]` switch floor
 
 
 <!-- --- -->
@@ -67,13 +71,16 @@ npm run build
 
 | Action | How |
 |--------|-----|
-| Place a block | Left-click or drag |
+| Place a block | Left-click or drag (`B`) |
 | Pan the canvas | Right-click drag or two-finger swipe (trackpad) |
-| Zoom in / out | Click `+` / `−` buttons above the canvas |
+| Zoom in / out | `+` / `−` buttons, or pinch / `Ctrl`+wheel toward the cursor |
 | Reset zoom | Click the `px` button between zoom controls |
-| Switch material | Click any material button in the top bar |
-| Erase a block | Select **Eraser** then left-click |
-| Clear current floor | Click **Clear Floor** in the top bar |
+| Switch material | Click a swatch in the side panel |
+| Erase a block | Select **Eraser** (`E`) then left-click or drag |
+| Flood fill | Select **Bucket** (`G`) then click a region |
+| Undo / Redo | `Ctrl+Z` / `Ctrl+Shift+Z` (or `Ctrl+Y`), or the side panel buttons |
+| Copy / paste floor | **複製層** / **貼上層** in the side panel |
+| Clear current floor | **清除層** in the side panel |
 
 ### 3D Preview (Right Panel)
 
@@ -102,9 +109,9 @@ Click **Import JSON** to reload a previously saved blueprint.
 ## Roadmap
 
 - [ ] Add item list and material colors
-- [ ] Flood fill tool (paint bucket)
-- [ ] Copy / paste floor layers (複製當前的到其他層去->柱子牆壁等)
-- [ ] Undo / Redo support
+- [x] Flood fill tool (paint bucket)
+- [x] Copy / paste floor layers
+- [x] Undo / Redo support
 - [ ] Screenshot export
 - [ ] Mobile touch support
 
